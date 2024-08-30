@@ -26,3 +26,7 @@ jobs:
         with:
           tag_name: action-v${{ github.run_number }}
           files: /tmp/pack.zip
+permissions:
+  contents: write
+  actions: write
+  
