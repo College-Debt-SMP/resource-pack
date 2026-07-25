@@ -1,0 +1,60 @@
+name: Handle Painting Comments (Undo/Resubmit)
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: write
+  issues: write
+  actions: write
+
+jobs:
+  process-comment:
+    runs-on: ubuntu-latest
+    # Only run if the issue is a painting submission, and it is closed
+    if: github.event.issue.state == 'closed' && contains(github.event.issue.labels.*.name, 'painting-submission')
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Handle Comment Action
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          # Bug fix: wrap in single quotes to prevent shell injection from user comment content
+          COMMENT_BODY: ${{ toJSON(github.event.comment.body) }}
+        run: python scripts/handle_comment.py
+
+      - name: Commit and Push Changes
+        if: success()
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+          
+          # Add all changes including deletions (-A tracks removed files too)
+          git add -A resource-pack/assets/cdsmp/textures/painting/ data-pack/data/cdsmp/painting_variant/ data-pack/data/minecraft/tags/painting_variant/ .submission_state/
+          
+          # Use ACTION_TYPE env var set by the python script to make the commit message descriptive
+          ACTION_TYPE="${ACTION_TYPE:-update}"
+          if git diff-index --quiet HEAD --; then
+            echo "No changes to commit"
+          else
+            git commit -m "${ACTION_TYPE} custom paintings from comment on issue #${{ github.event.issue.number }}"
+            git push
+          fi
+
+      - name: Trigger Release Workflow
+        # Bug fix: only trigger a release on resubmit, not undo. The python script
+        # sets ACTION_TYPE=undo when undoing, so we skip release in that case.
+        if: success() && env.ACTION_TYPE != 'undo'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run release.yml --ref main
