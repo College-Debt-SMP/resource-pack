@@ -1,7 +1,10 @@
 {
-   "pack":{
-      "pack_format":88,
-      "description":"College Debt SMP custom item models",
-	  "_credits": "Text with food integrated from vanilla tweaks.  Trophy, shepherd model+textures created by MukiTanuki.  Other editing and pack put together by MukiTanuki"
-   }
+  "pack": {
+    "pack_format": 107,
+    "description": "College Debt SMP custom resources",
+    "supported_formats": {
+      "min_inclusive": 88,
+      "max_inclusive": 107
+    }
+  }
 }

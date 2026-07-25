@@ -1,0 +1,46 @@
+name: Auto-bump Pack Formats
+
+on:
+  schedule:
+    # Run daily at midnight UTC
+    - cron: '0 0 * * *'
+  workflow_dispatch: # Allow manual triggering
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  check-and-bump:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Run Pack Format Checker
+        id: check_formats
+        run: python scripts/check_pack_format.py
+
+      - name: Create Pull Request
+        if: steps.check_formats.outputs.changes_made == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore: bump pack formats to latest Minecraft version"
+          branch: auto-bump-pack-format
+          delete-branch: true
+          title: "Update Minecraft Pack Formats"
+          body: |
+            A newer Minecraft pack format is available!
+            
+            This automated Pull Request bumps the `pack_format` and `max_inclusive` fields in `resource-pack/pack.mcmeta` and `data-pack/pack.mcmeta` to ensure compatibility with the latest version of Minecraft.
+            
+            Please review the changes and merge if everything looks correct.
+          labels: |
+            enhancement
+            automated pr
