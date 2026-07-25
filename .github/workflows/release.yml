@@ -1,0 +1,42 @@
+name: Release Resource Pack and Datapack
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'resource-pack/**'
+      - 'data-pack/**'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create Resource Pack Zip
+        run: |
+          cd resource-pack
+          zip -r ../resource-pack.zip assets/ pack.mcmeta
+          cd ..
+
+      - name: Create Datapack Zip
+        run: |
+          cd data-pack
+          zip -r ../datapack.zip data/ pack.mcmeta
+          cd ..
+
+      - name: Create Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Bug 10 fix: use run_id (globally unique per workflow run) instead of run_number
+          # to prevent tag collisions when two releases are triggered in rapid succession
+          TAG_NAME="v$(date +'%Y.%m.%d')-${{ github.run_id }}"
+          gh release create "$TAG_NAME" resource-pack.zip datapack.zip \
+            --title "Update Custom Paintings - $TAG_NAME" \
+            --notes "Automated release containing the latest custom paintings."

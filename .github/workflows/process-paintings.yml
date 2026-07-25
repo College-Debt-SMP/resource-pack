@@ -1,0 +1,57 @@
+name: Process Custom Painting Submission
+
+on:
+  issues:
+    # Bug 9 fix: only trigger when a label is applied, not on every issue open
+    types: [labeled]
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  process-paintings:
+    runs-on: ubuntu-latest
+    # Bug 9 fix: only proceed if the applied label is 'painting-submission'
+    if: github.event.label.name == 'painting-submission'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Process Issue Zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: python scripts/process_paintings.py
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Bug 7 fix: explicitly set the remote URL with the token to ensure push works
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+
+          git add resource-pack/assets/cdsmp/textures/painting/ data-pack/data/cdsmp/painting_variant/ data-pack/data/minecraft/tags/painting_variant/
+
+          # Only commit if there are staged changes
+          if git diff-index --quiet HEAD --; then
+            echo "No changes to commit"
+          else
+            git commit -m "Add custom paintings from issue #${{ github.event.issue.number }}"
+            git push
+          fi
+
+      - name: Close Issue
+        # Bug 8 fix: only close if all prior steps succeeded (the python script will
+        # exit(1) on any invalid submission, preventing this step from running)
+        if: success()
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh issue close ${{ github.event.issue.number }} --comment "✅ Paintings successfully processed and added to the server resource pack! A new release will be generated shortly."

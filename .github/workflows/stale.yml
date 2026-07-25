@@ -1,0 +1,22 @@
+name: Close Stale Issues
+
+on:
+  schedule:
+    - cron: '0 * * * *' # Run every hour
+
+permissions:
+  issues: write
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/stale@v9
+        with:
+          days-before-stale: 1
+          days-before-close: 0
+          # Bug 12 fix: scope stale action to only painting submission issues
+          only-labels: 'painting-submission'
+          stale-issue-message: 'This painting submission has been inactive for 24 hours. Closing automatically. Please open a new issue if you still need to submit a resource pack.'
+          close-issue-message: 'Closed due to inactivity.'
+          exempt-issue-labels: 'keep-open'
