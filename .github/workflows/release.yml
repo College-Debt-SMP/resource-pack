@@ -1,12 +1,7 @@
 name: Release Resource Pack and Datapack
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - 'resource-pack/**'
-      - 'data-pack/**'
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -17,12 +12,16 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # A non-shallow repository clone is required for PackSquash
 
-      - name: Create Resource Pack Zip
-        run: |
-          cd resource-pack
-          zip -r ../resource-pack.zip assets/ pack.mcmeta
-          cd ..
+      - name: Run PackSquash
+        uses: ComunidadAylas/PackSquash-action@v4
+        with:
+          packsquash_version: latest
+          options: |
+            pack_directory = 'resource-pack'
+            output_file_path = 'resource-pack.zip'
 
       - name: Create Datapack Zip
         run: |
@@ -34,9 +33,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # Bug 10 fix: use run_id (globally unique per workflow run) instead of run_number
-          # to prevent tag collisions when two releases are triggered in rapid succession
+          # Use run_id (globally unique per workflow run)
           TAG_NAME="v$(date +'%Y.%m.%d')-${{ github.run_id }}"
           gh release create "$TAG_NAME" resource-pack.zip datapack.zip \
-            --title "Update Custom Paintings - $TAG_NAME" \
-            --notes "Automated release containing the latest custom paintings."
+            --title "College Debt SMP Custom Resources - $TAG_NAME" \
+            --notes "Automated release containing the latest custom paintings and optimized resources."

@@ -8,6 +8,7 @@ on:
 permissions:
   contents: write
   issues: write
+  actions: write
 
 jobs:
   process-paintings:
@@ -49,9 +50,14 @@ jobs:
           fi
 
       - name: Close Issue
-        # Bug 8 fix: only close if all prior steps succeeded (the python script will
-        # exit(1) on any invalid submission, preventing this step from running)
         if: success()
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: gh issue close ${{ github.event.issue.number }} --comment "✅ Paintings successfully processed and added to the server resource pack! A new release will be generated shortly."
+
+      - name: Trigger Release Workflow
+        if: success()
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run release.yml --ref main
+
