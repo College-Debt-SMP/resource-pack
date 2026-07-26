@@ -12,8 +12,16 @@ def fetch_latest_formats():
     with urllib.request.urlopen(req) as response:
         data = json.loads(response.read().decode("utf-8"))
         
-    latest = data[0]
-    pack_version = latest.get("pack_version")
+    # Some recent/experimental snapshots might be missing pack_version,
+    # so we iterate until we find the most recent valid one.
+    pack_version = None
+    for entry in data:
+        if entry.get("pack_version") is not None:
+            pack_version = entry.get("pack_version")
+            break
+    
+    if pack_version is None:
+        raise ValueError("Could not find any pack_version in the recent versions list.")
     
     if isinstance(pack_version, dict):
         return {
