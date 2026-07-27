@@ -53,7 +53,10 @@ jobs:
         if: success()
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh issue close ${{ github.event.issue.number }} --comment "✅ Paintings successfully processed and added to the server resource pack! A new release will be generated shortly. \n\n*If you made a mistake, you can reply to this issue with exactly **\`undo\`** to revert your submission, or simply upload a **new zip file** in a comment to replace it.*"
+        run: |
+          gh issue close ${{ github.event.issue.number }} --comment '✅ Paintings successfully processed and added to the server resource pack! A new release will be generated shortly.
+          
+          *If you made a mistake, you can reply to this issue with exactly **`undo`** to revert your submission, or simply upload a **new zip file** in a comment to replace it.*'
 
       - name: Trigger Release Workflow
         if: success()
