@@ -94,22 +94,18 @@ def process_zips(zip_links, issue_number, repo):
                         try:
                             mctools_data = json.load(f)
                         except json.JSONDecodeError as e:
-                            print(f"Failed to parse mctools.json: {e}")
-                            continue
-
-                    # Support both old ("paintings") and new ("items") formats
-                    paintings = mctools_data.get("paintings") or mctools_data.get("items", [])
-                    if not paintings:
-                        print("No paintings/items entries found in mctools.json")
+                    items = mctools_data.get("items", [])
+                    if not items:
+                        print("No 'items' entries found in mctools.json")
                         continue
 
-                    for p in paintings:
+                    for p in items:
+                        # 'name' is the original filename, used for the in-game painting ID
                         original_name = sanitize_name(p.get("name", "unnamed"))
                         
-                        # The painting dimensions in blocks
-                        # Prioritize 'sizeLabel' (e.g. "4x2" or "4×2") as 'sizeW'/'sizeH' are pixel dimensions that may be scaled
+                        # 'sizeLabel' is the painting dimension in blocks (e.g. "4x2" or "4×2")
                         size_label = p.get("sizeLabel")
-                        width, height = None, None
+                        width, height = 1, 1
                         
                         if size_label:
                             parts = re.split(r'[xX\u00d7]', size_label)
@@ -119,26 +115,19 @@ def process_zips(zip_links, issue_number, repo):
                                     height = int(parts[1].strip())
                                 except ValueError:
                                     pass
-                                    
-                        if width is None:
-                            width = p.get("width")
-                        if width is None:
-                            width = max(1, p.get("sizeW", 16) // 16)
-                            
-                        if height is None:
-                            height = p.get("height")
-                        if height is None:
-                            height = max(1, p.get("sizeH", 16) // 16)
 
-                        # New format uses slotName for the PNG filename
+                        # 'slotName' is the actual PNG filename inside the uploaded zip
                         slot_name = sanitize_name(p.get("slotName", ""))
                         
-                        png_path = find_in_zip(file_list, f"{original_name}.png")
-                        if not png_path and slot_name:
+                        png_path = None
+                        if slot_name:
                             png_path = find_in_zip(file_list, f"{slot_name}.png")
+                        if not png_path:
+                            # Fallback just in case
+                            png_path = find_in_zip(file_list, f"{original_name}.png")
                             
                         if not png_path:
-                            print(f"Could not find texture PNG for '{original_name}' (also checked '{slot_name}')")
+                            print(f"Could not find texture PNG for '{original_name}' (expected '{slot_name}.png')")
                             continue
 
                         target_texture_dir = "resource-pack/assets/cdsmp/textures/painting"
