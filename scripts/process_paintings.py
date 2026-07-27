@@ -12,12 +12,12 @@ MAX_ZIP_SIZE_BYTES = MAX_ZIP_SIZE_MB * 1024 * 1024
 PAINTING_AUTHOR = "College Debt SMP"
 RECIPE_DIR = "data-pack/data/cdsmp/recipe/painting_variant"
 
-def build_variant_json(final_name, width, height):
+def build_variant_json(final_name, width, height, display_title):
     return {
         "asset_id": f"cdsmp:{final_name}",
         "width": width,
         "height": height,
-        "title": final_name,
+        "title": display_title,
         "author": PAINTING_AUTHOR,
     }
 
@@ -129,7 +129,9 @@ def process_zips(zip_links, issue_number, repo):
 
                     for p in items:
                         # 'name' is the original filename, used for the in-game painting ID
-                        original_name = sanitize_name(p.get("name", "unnamed"))
+                        raw_name = (p.get("name") or "").strip()
+                        original_name = sanitize_name(raw_name or "unnamed")
+                        display_title = raw_name or original_name
                         
                         # 'sizeLabel' is the painting dimension in blocks (e.g. "4x2" or "4×2")
                         size_label = p.get("sizeLabel")
@@ -180,7 +182,7 @@ def process_zips(zip_links, issue_number, repo):
                         with z.open(png_path) as source_png, open(target_png_file, "wb") as target_png:
                             shutil.copyfileobj(source_png, target_png)
 
-                        variant_json = build_variant_json(final_name, width, height)
+                        variant_json = build_variant_json(final_name, width, height, display_title)
 
                         target_json_file = os.path.join(target_data_dir, f"{final_name}.json")
                         with open(target_json_file, "w") as f:
