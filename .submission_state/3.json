@@ -1,0 +1,11 @@
+{
+  "variants": [
+    "cdsmp:ryan-and-lumity"
+  ],
+  "pngs": [
+    "resource-pack/assets/cdsmp/textures/painting/ryan-and-lumity.png"
+  ],
+  "jsons": [
+    "data-pack/data/cdsmp/painting_variant/ryan-and-lumity.json"
+  ]
+}
