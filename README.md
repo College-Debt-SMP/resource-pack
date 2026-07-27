@@ -28,6 +28,19 @@ Players can submit custom paintings to be added to the server-wide resource pack
 
 You can manage or modify your submission directly from the closed issue thread:
 
+**Show available commands:**
+- Reply with the exact comment: `help`
+
+**List paintings in this submission:**
+- Reply with the exact comment: `list`
+- The bot will reply with each painting's slug, current title, and dimensions.
+
+**Rename a painting title:**
+- If the submission has **one** painting, reply with: `rename Tortellini's Sandwich`
+- You can always target a specific painting by slug: `rename tortellini_comfort Tortellini's Sandwich`
+- If the submission has **multiple** paintings, the slug is required. If you omit it or use an unknown slug, the bot will list the available slugs.
+- This only changes the display title used in the stonecutter UI. The `cdsmp:` resource ID stays the same.
+
 **Undo / Revert a Submission:**
 - Reply to your closed submission issue with the exact comment: `undo`
 - The bot will remove all textures and datapack entries associated with that issue.

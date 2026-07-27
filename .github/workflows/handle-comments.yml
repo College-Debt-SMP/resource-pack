@@ -52,9 +52,9 @@ jobs:
           fi
 
       - name: Trigger Release Workflow
-        # Bug fix: only trigger a release on resubmit, not undo. The python script
-        # sets ACTION_TYPE=undo when undoing, so we skip release in that case.
-        if: success() && env.ACTION_TYPE != 'undo'
+        # Skip release for undo (no assets left) and read-only commands (list/help).
+        # rename/resubmit should still publish a new datapack/resource pack release.
+        if: success() && env.ACTION_TYPE != 'undo' && env.ACTION_TYPE != 'list' && env.ACTION_TYPE != 'help'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: gh workflow run release.yml --ref main
