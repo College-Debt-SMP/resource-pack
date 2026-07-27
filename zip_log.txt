@@ -1,0 +1,32 @@
+Files in zip:
+pack.mcmeta
+pack.png
+mctools.json
+assets/
+assets/minecraft/
+assets/minecraft/textures/
+assets/minecraft/textures/painting/
+assets/minecraft/textures/painting/fighters.png
+assets/minecraft/texts/
+assets/minecraft/texts/splashes.txt
+
+Found mctools at mctools.json
+{
+  "tool": "mctools-paintings",
+  "toolVersion": 1,
+  "items": [
+    {
+      "name": "adam-scott-05-nimbus-cine-01",
+      "sizeW": 64,
+      "sizeH": 32,
+      "sizeLabel": "4\u00d72",
+      "slotName": "fighters",
+      "panX": 0.28,
+      "panY": 0.5,
+      "scale": 1
+    }
+  ],
+  "format": "java",
+  "pack_name": "Lightfall",
+  "pack_desc": "1 custom painting"
+}
