@@ -15,6 +15,13 @@ jobs:
         with:
           fetch-depth: 0 # A non-shallow repository clone is required for PackSquash
 
+      - name: Temporarily hide huge files from PackSquash
+        run: |
+          mkdir -p /tmp/hidden-textures/assets/elytratrims/textures/feature
+          if [ -f resource-pack/assets/elytratrims/textures/feature/bad_apple.png ]; then
+            mv resource-pack/assets/elytratrims/textures/feature/bad_apple.png /tmp/hidden-textures/assets/elytratrims/textures/feature/
+          fi
+
       - name: Run PackSquash
         uses: ComunidadAylas/PackSquash-action@v4
         with:
@@ -22,9 +29,16 @@ jobs:
           options: |
             pack_directory = 'resource-pack'
             output_file_path = 'resource-pack.zip'
-            
-            ["**/*.png"]
-            maximum_width_and_height = 1000000
+
+      - name: Re-inject huge files into optimized zip
+        run: |
+          if [ -f /tmp/hidden-textures/assets/elytratrims/textures/feature/bad_apple.png ]; then
+            # Restore to original directory for consistency
+            mv /tmp/hidden-textures/assets/elytratrims/textures/feature/bad_apple.png resource-pack/assets/elytratrims/textures/feature/
+            # Inject directly into the zip
+            cd resource-pack
+            zip -u ../resource-pack.zip assets/elytratrims/textures/feature/bad_apple.png
+          fi
 
       - name: Create Datapack Zip
         run: |
