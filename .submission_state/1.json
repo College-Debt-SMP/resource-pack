@@ -1,0 +1,11 @@
+{
+  "variants": [
+    "cdsmp:adam-scott-05-nimbus-cine-01"
+  ],
+  "pngs": [
+    "resource-pack/assets/cdsmp/textures/painting/adam-scott-05-nimbus-cine-01.png"
+  ],
+  "jsons": [
+    "data-pack/data/cdsmp/painting_variant/adam-scott-05-nimbus-cine-01.json"
+  ]
+}
