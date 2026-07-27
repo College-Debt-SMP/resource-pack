@@ -94,6 +94,9 @@ def process_zips(zip_links, issue_number, repo):
                         try:
                             mctools_data = json.load(f)
                         except json.JSONDecodeError as e:
+                            print(f"Failed to parse mctools.json: {e}")
+                            continue
+
                     items = mctools_data.get("items", [])
                     if not items:
                         print("No 'items' entries found in mctools.json")
