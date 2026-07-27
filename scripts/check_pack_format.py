@@ -48,11 +48,14 @@ def update_mcmeta(file_path, new_max_format):
     pack = mcmeta.get("pack", {})
     
     current_max = pack.get("pack_format", 0)
+    current_min = pack.get("min_format", current_max)
     supported = pack.get("supported_formats")
     
     if isinstance(supported, dict):
+        current_min = supported.get("min_inclusive", current_min)
         current_max = supported.get("max_inclusive", current_max)
     elif isinstance(supported, list) and len(supported) == 2:
+        current_min = supported[0]
         current_max = supported[1]
         
     if new_max_format <= current_max:
@@ -63,16 +66,20 @@ def update_mcmeta(file_path, new_max_format):
     
     # Update pack_format (this acts as the fallback for older versions and general indicator)
     pack["pack_format"] = new_max_format
+    pack["min_format"] = current_min
+    pack["max_format"] = new_max_format
     
     # Update supported_formats range
     if isinstance(supported, dict):
+        pack["supported_formats"]["min_inclusive"] = current_min
         pack["supported_formats"]["max_inclusive"] = new_max_format
     elif isinstance(supported, list) and len(supported) == 2:
+        pack["supported_formats"][0] = current_min
         pack["supported_formats"][1] = new_max_format
     else:
         # If there wasn't a supported_formats block, create one to ensure backwards compatibility
         pack["supported_formats"] = {
-            "min_inclusive": current_max,
+            "min_inclusive": current_min,
             "max_inclusive": new_max_format
         }
         

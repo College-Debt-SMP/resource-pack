@@ -38,7 +38,7 @@ jobs:
           body: |
             A newer Minecraft pack format is available!
             
-            This automated Pull Request bumps the `pack_format` and `max_inclusive` fields in `resource-pack/pack.mcmeta` and `data-pack/pack.mcmeta` to ensure compatibility with the latest version of Minecraft.
+            This automated Pull Request bumps the `pack_format`, `min_format`, `max_format`, and `supported_formats` fields in `resource-pack/pack.mcmeta` and `data-pack/pack.mcmeta` to ensure compatibility with the latest version of Minecraft.
             
             Please review the changes and merge if everything looks correct.
           labels: |
