@@ -22,6 +22,8 @@ jobs:
           options: |
             pack_directory = 'resource-pack'
             output_file_path = 'resource-pack.zip'
+            
+            [png]
             maximum_width_and_height = 1000000
 
       - name: Create Datapack Zip
