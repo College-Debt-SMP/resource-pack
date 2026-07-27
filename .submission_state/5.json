@@ -1,0 +1,14 @@
+{
+  "variants": [
+    "cdsmp:trailblazer"
+  ],
+  "pngs": [
+    "resource-pack/assets/cdsmp/textures/painting/trailblazer.png"
+  ],
+  "jsons": [
+    "data-pack/data/cdsmp/painting_variant/trailblazer.json"
+  ],
+  "recipes": [
+    "data-pack/data/cdsmp/recipe/painting_variant/trailblazer.json"
+  ]
+}
