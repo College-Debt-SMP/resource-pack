@@ -25,6 +25,7 @@ HELP_TEXT = """Available commands for this painting submission:
 
 Notes:
 - `rename` only changes the display title used in the stonecutter UI. The `cdsmp:` resource ID stays the same.
+- If this submission has one painting and you write `rename <slug>` with that painting's slug, it is treated as setting the title to that same text.
 - If `rename` is missing a slug on a multi-painting submission, or uses an unknown slug, the bot will list available slugs."""
 
 
@@ -115,6 +116,10 @@ def parse_rename(remainder, slugs):
 
     if first in slugs:
         if not rest:
+            # Single-painting ambiguity: `rename <slug>` means set the title to that
+            # same string (equivalent to `rename <slug> <slug>`).
+            if len(slugs) == 1:
+                return first, first, None
             return None, None, (
                 f"❌ Missing new title for `{first}`.\n\n"
                 f"Usage: `rename {first} <new title>`"
