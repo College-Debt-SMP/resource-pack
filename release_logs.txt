@@ -1,0 +1,196 @@
+release	Run PackSquash	﻿2026-07-27T03:39:25.6184918Z ##[group]Run ComunidadAylas/PackSquash-action@v4
+release	Run PackSquash	2026-07-27T03:39:25.6185637Z with:
+release	Run PackSquash	2026-07-27T03:39:25.6185956Z   packsquash_version: latest
+release	Run PackSquash	2026-07-27T03:39:25.6186426Z   options: pack_directory = 'resource-pack'
+release	Run PackSquash	output_file_path = 'resource-pack.zip'
+release	Run PackSquash	
+release	Run PackSquash	2026-07-27T03:39:25.6189385Z   token: ***
+release	Run PackSquash	2026-07-27T03:39:25.6189668Z   artifact_name: Optimized pack
+release	Run PackSquash	2026-07-27T03:39:25.6189997Z   show_emoji_in_packsquash_logs: true
+release	Run PackSquash	2026-07-27T03:39:25.6190414Z   enable_color_in_packsquash_logs: true
+release	Run PackSquash	2026-07-27T03:39:25.6190747Z ##[endgroup]
+release	Run PackSquash	2026-07-27T03:39:25.8221304Z The specified PackSquash options string could not be opened as a file. Treating it as a TOML string instead
+release	Run PackSquash	2026-07-27T03:39:25.8236859Z ##[group]PackSquash options
+release	Run PackSquash	2026-07-27T03:39:25.8237609Z 1      pack_directory = "resource-pack"
+release	Run PackSquash	2026-07-27T03:39:25.8238299Z 2      output_file_path = "resource-pack.zip"
+release	Run PackSquash	2026-07-27T03:39:25.8239114Z 3      zip_spec_conformance_level = "high"
+release	Run PackSquash	2026-07-27T03:39:25.8240823Z ##[endgroup]
+release	Run PackSquash	2026-07-27T03:39:26.6612762Z ##[group]PackSquash version
+release	Run PackSquash	2026-07-27T03:39:26.6628025Z [command]/home/runner/work/_temp/packsquash-1040c4a92c59083e9c206174a4ad7103/packsquash --version
+release	Run PackSquash	2026-07-27T03:39:26.6673245Z PackSquash v0.4.1 (release, 2026-01-01) for x86_64-unknown-linux-musl
+release	Run PackSquash	2026-07-27T03:39:26.6674290Z Minecraft resource and data pack optimizer (CLI)
+release	Run PackSquash	2026-07-27T03:39:26.6675813Z 
+release	Run PackSquash	2026-07-27T03:39:26.6676678Z Copyright (C) Alejandro "AlexTMjugador" González
+release	Run PackSquash	2026-07-27T03:39:26.6677104Z 
+release	Run PackSquash	2026-07-27T03:39:26.6677413Z This program is free software: you can redistribute it and/or modify
+release	Run PackSquash	2026-07-27T03:39:26.6678182Z it under the terms of the GNU Affero General Public License as
+release	Run PackSquash	2026-07-27T03:39:26.6678856Z published by the Free Software Foundation, either version 3 of the
+release	Run PackSquash	2026-07-27T03:39:26.6679467Z License, or (at your option) any later version.
+release	Run PackSquash	2026-07-27T03:39:26.6679797Z 
+release	Run PackSquash	2026-07-27T03:39:26.6680089Z This program is distributed free of charge in the hope that it will
+release	Run PackSquash	2026-07-27T03:39:26.6680806Z be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+release	Run PackSquash	2026-07-27T03:39:26.6681621Z of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+release	Run PackSquash	2026-07-27T03:39:26.6682326Z GNU Affero General Public License for more details.
+release	Run PackSquash	2026-07-27T03:39:26.6682672Z 
+release	Run PackSquash	2026-07-27T03:39:26.6682992Z You should have received a copy of the GNU Affero General Public License
+release	Run PackSquash	2026-07-27T03:39:26.6683758Z along with this program. If not, see <https://www.gnu.org/licenses/>.
+release	Run PackSquash	2026-07-27T03:39:26.6684970Z ##[endgroup]
+release	Run PackSquash	2026-07-27T03:39:26.6706339Z ##[group]Restoring cached data
+release	Run PackSquash	2026-07-27T03:39:26.7893066Z ##[endgroup]
+release	Run PackSquash	2026-07-27T03:39:31.1882026Z ##[group]PackSquash output
+release	Run PackSquash	2026-07-27T03:39:31.1883051Z [command]/home/runner/work/_temp/packsquash-1040c4a92c59083e9c206174a4ad7103/packsquash
+release	Run PackSquash	2026-07-27T03:39:31.1934989Z PackSquash v0.4.1 (release, 2026-01-01) for x86_64-unknown-linux-musl
+release	Run PackSquash	2026-07-27T03:39:31.1936298Z Minecraft resource and data pack optimizer (CLI)
+release	Run PackSquash	2026-07-27T03:39:31.1937092Z 
+release	Run PackSquash	2026-07-27T03:39:31.1937579Z This program comes with ABSOLUTELY NO WARRANTY.
+release	Run PackSquash	2026-07-27T03:39:31.1938530Z This is free software, and you are welcome to redistribute it
+release	Run PackSquash	2026-07-27T03:39:31.1939781Z under certain conditions. Use the -v command line switch for
+release	Run PackSquash	2026-07-27T03:39:31.1941652Z more details about these conditions.
+release	Run PackSquash	2026-07-27T03:39:31.1942218Z 
+release	Run PackSquash	2026-07-27T03:39:31.1943727Z [36m🔷 Reading options from standard input (keyboard input or pipe)...
+release	Run PackSquash	2026-07-27T03:39:31.1944894Z    If you are not sure what this means, try using an external options file.
+release	Run PackSquash	2026-07-27T03:39:31.1946642Z    Please check out <https://packsquash.aylas.org/links/Options-files> for examples and more information.[0m
+release	Run PackSquash	2026-07-27T03:39:31.1948012Z [36m🔷 Options read. Processing pack...[0m
+release	Run PackSquash	2026-07-27T03:39:31.1971265Z [36m🔷 Working around automatically detected Minecraft quirks: ogg_obfuscation_incompatibility[0m
+release	Run PackSquash	2026-07-27T03:39:31.2004708Z ##[warning][33m⚡ assets/minecraft/models/item/ominous_trial_key.json:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.2017651Z ##[warning][33m⚡ assets/minecraft/models/item/trial_key.json:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.2357947Z [37m🏁 assets/minecraft/models/item/trial_key.json: Minified and debloated[0m
+release	Run PackSquash	2026-07-27T03:39:31.2388391Z ##[warning][33m⚡ assets/minecraft/textures/trims/entity/wings/raiser.png:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.2610960Z ##[warning][33m⚡ assets/minecraft/textures/trims/entity/wings/dune.png:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.2615974Z ##[warning][33m⚡ assets/minecraft/textures/trims/entity/wings/rib.png:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.2646679Z [37m🏁 assets/minecraft/models/item/ominous_trial_key.json: Minified and debloated[0m
+release	Run PackSquash	2026-07-27T03:39:31.2647823Z [37m🏁 pack.mcmeta: Minified[0m
+release	Run PackSquash	2026-07-27T03:39:31.2677255Z ##[warning][33m⚡ assets/minecraft/textures/trims/entity/wings/silence.png:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.2706682Z [37m🏁 assets/minecraft/textures/trims/entity/wings/ward.png: Optimized with 100% quality color quantization[0m
+release	Run PackSquash	2026-07-27T03:39:31.2737182Z ##[warning][33m⚡ assets/minecraft/textures/trims/entity/wings/sentry.png:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.2763190Z [37m🏁 assets/minecraft/textures/trims/entity/wings/eye.png: Optimized with 100% quality color quantization[0m
+release	Run PackSquash	2026-07-27T03:39:31.2787441Z ##[warning][33m⚡ assets/minecraft/textures/trims/entity/wings/eye.png:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.3117686Z [37m🏁 assets/minecraft/textures/trims/entity/wings/tide.png: Optimized with 100% quality color quantization[0m
+release	Run PackSquash	2026-07-27T03:39:31.3147656Z ##[warning][33m⚡ assets/minecraft/textures/trims/entity/wings/snout.png:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.3150880Z ##[warning][33m⚡ assets/minecraft/textures/trims/entity/wings/bolt.png:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.3153640Z ##[warning][33m⚡ assets/minecraft/textures/trims/entity/wings/wayfinder.png:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.3156352Z ##[warning][33m⚡ assets/minecraft/textures/trims/entity/wings/vex.png:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.3158841Z ##[warning][33m⚡ assets/minecraft/textures/trims/entity/wings/ward.png:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.3223051Z [37m🏁 assets/minecraft/textures/trims/entity/wings/vex.png: Optimized with 100% quality color quantization[0m
+release	Run PackSquash	2026-07-27T03:39:31.3236747Z [37m🏁 assets/minecraft/textures/trims/entity/wings/rib.png: Optimized with 100% quality color quantization[0m
+release	Run PackSquash	2026-07-27T03:39:31.3267370Z ##[warning][33m⚡ assets/minecraft/textures/trims/entity/wings/spire.png:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.3297060Z ##[warning][33m⚡ assets/minecraft/textures/trims/entity/wings/coast.png:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.3326839Z [37m🏁 assets/minecraft/textures/trims/entity/wings/coast.png: Optimized with 100% quality color quantization[0m
+release	Run PackSquash	2026-07-27T03:39:31.3487518Z [37m🏁 assets/minecraft/textures/trims/entity/wings/bolt.png: Optimized with 100% quality color quantization[0m
+release	Run PackSquash	2026-07-27T03:39:31.3657692Z [37m🏁 assets/minecraft/textures/trims/entity/wings/wayfinder.png: Optimized with 100% quality color quantization[0m
+release	Run PackSquash	2026-07-27T03:39:31.3857275Z [37m🏁 assets/minecraft/textures/trims/entity/wings/sentry.png: Optimized with 100% quality color quantization[0m
+release	Run PackSquash	2026-07-27T03:39:31.3937334Z [37m🏁 assets/minecraft/textures/trims/entity/wings/shaper.png: Optimized with 100% quality color quantization[0m
+release	Run PackSquash	2026-07-27T03:39:31.3963185Z [37m🏁 assets/minecraft/textures/trims/entity/wings/wild.png: Optimized with 100% quality color quantization[0m
+release	Run PackSquash	2026-07-27T03:39:31.4003832Z ##[warning][33m⚡ assets/minecraft/textures/trims/entity/wings/shaper.png:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.4047606Z [37m🏁 assets/minecraft/textures/trims/entity/wings/flow.png: Optimized with 100% quality color quantization[0m
+release	Run PackSquash	2026-07-27T03:39:31.4057288Z ##[warning][33m⚡ assets/minecraft/textures/trims/entity/wings/tide.png:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.4387827Z [37m🏁 assets/minecraft/textures/trims/entity/wings/dune.png: Optimized with 100% quality color quantization[0m
+release	Run PackSquash	2026-07-27T03:39:31.4397260Z ##[warning][33m⚡ assets/minecraft/textures/trims/entity/wings/flow.png:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.4427524Z ##[warning][33m⚡ assets/minecraft/textures/trims/entity/wings/host.png:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.4651427Z [37m🏁 assets/minecraft/textures/trims/entity/wings/silence.png: Optimized with 100% quality color quantization[0m
+release	Run PackSquash	2026-07-27T03:39:31.4717678Z ##[warning][33m⚡ assets/minecraft/textures/trims/entity/wings/wild.png:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.4767970Z ##[warning][33m⚡ assets/minecraft/textures/trims/items/wings_trim.png:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.4776494Z [37m🏁 assets/minecraft/textures/trims/entity/wings/spire.png: Optimized with 100% quality color quantization[0m
+release	Run PackSquash	2026-07-27T03:39:31.4799520Z [37m🏁 assets/minecraft/textures/trims/entity/wings/snout.png: Optimized with 100% quality color quantization[0m
+release	Run PackSquash	2026-07-27T03:39:31.4856895Z [37m🏁 assets/minecraft/textures/trims/items/wings_trim.png: Optimized with no visible color loss[0m
+release	Run PackSquash	2026-07-27T03:39:31.4859428Z ##[warning][33m⚡ assets/minecraft/textures/trims/items/wings/raiser.png:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.4877287Z ##[warning][33m⚡ assets/minecraft/textures/trims/items/wings/dune.png:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.4917275Z ##[warning][33m⚡ assets/minecraft/textures/trims/items/wings/rib.png:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.4937292Z ##[warning][33m⚡ assets/minecraft/textures/trims/items/wings/silence.png:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.4947163Z ##[warning][33m⚡ assets/minecraft/textures/trims/items/wings/sentry.png:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.4976883Z [37m🏁 assets/minecraft/textures/trims/items/wings/eye.png: Optimized with no visible color loss[0m
+release	Run PackSquash	2026-07-27T03:39:31.4997372Z [37m🏁 assets/minecraft/textures/trims/items/wings/ward.png: Optimized with no visible color loss[0m
+release	Run PackSquash	2026-07-27T03:39:31.5017538Z ##[warning][33m⚡ assets/minecraft/textures/trims/items/wings/eye.png:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.5047414Z [37m🏁 assets/minecraft/textures/trims/items/wings/tide.png: Optimized with no visible color loss[0m
+release	Run PackSquash	2026-07-27T03:39:31.5066618Z [37m🏁 assets/minecraft/textures/trims/entity/wings/host.png: Optimized with 100% quality color quantization[0m
+release	Run PackSquash	2026-07-27T03:39:31.5087257Z ##[warning][33m⚡ assets/minecraft/textures/trims/items/wings/snout.png:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.5116505Z [37m🏁 assets/minecraft/textures/trims/items/wings/rib.png: Optimized with no visible color loss[0m
+release	Run PackSquash	2026-07-27T03:39:31.5127386Z ##[warning][33m⚡ assets/minecraft/textures/trims/items/wings/bolt.png:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.5157361Z ##[warning][33m⚡ assets/minecraft/textures/trims/items/wings/wayfinder.png:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.5161492Z [37m🏁 assets/minecraft/textures/trims/items/wings/coast.png: Optimized with no visible color loss[0m
+release	Run PackSquash	2026-07-27T03:39:31.5197285Z ##[warning][33m⚡ assets/minecraft/textures/trims/items/wings/vex.png:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.5238511Z ##[warning][33m⚡ assets/minecraft/textures/trims/items/wings/ward.png:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.5246504Z [37m🏁 assets/minecraft/textures/trims/items/wings/vex.png: Optimized with no visible color loss[0m
+release	Run PackSquash	2026-07-27T03:39:31.5257080Z ##[warning][33m⚡ assets/minecraft/textures/trims/items/wings/spire.png:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.5286445Z [37m🏁 assets/minecraft/textures/trims/items/wings/shaper.png: Optimized with no visible color loss[0m
+release	Run PackSquash	2026-07-27T03:39:31.5306605Z [37m🏁 assets/minecraft/textures/trims/items/wings/bolt.png: Optimized with no visible color loss[0m
+release	Run PackSquash	2026-07-27T03:39:31.5347588Z ##[warning][33m⚡ assets/minecraft/textures/trims/items/wings/coast.png:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.5356832Z [37m🏁 assets/minecraft/textures/trims/entity/wings/raiser.png: Optimized with 100% quality color quantization[0m
+release	Run PackSquash	2026-07-27T03:39:31.5376331Z [37m🏁 assets/minecraft/textures/trims/items/wings/snout.png: Optimized with no visible color loss[0m
+release	Run PackSquash	2026-07-27T03:39:31.5391030Z [37m🏁 assets/minecraft/textures/trims/items/wings/wayfinder.png: Optimized with no visible color loss[0m
+release	Run PackSquash	2026-07-27T03:39:31.5438226Z ##[warning][33m⚡ assets/minecraft/textures/trims/items/wings/wild.png:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.5447268Z ##[warning][33m⚡ assets/minecraft/textures/trims/items/wings/shaper.png:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.5466810Z ##[warning][33m⚡ assets/minecraft/textures/trims/items/wings/tide.png:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.5486828Z ##[warning][33m⚡ assets/minecraft/textures/trims/items/wings/flow.png:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.5517388Z [37m🏁 assets/minecraft/textures/trims/items/wings/sentry.png: Optimized with no visible color loss[0m
+release	Run PackSquash	2026-07-27T03:39:31.5546657Z [37m🏁 assets/minecraft/textures/trims/items/wings/flow.png: Optimized with no visible color loss[0m
+release	Run PackSquash	2026-07-27T03:39:31.5587238Z ##[warning][33m⚡ assets/minecraft/textures/trims/items/wings/host.png:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.5596829Z [37m🏁 assets/minecraft/textures/trims/items/wings/wild.png: Optimized with no visible color loss[0m
+release	Run PackSquash	2026-07-27T03:39:31.5606369Z [37m🏁 assets/minecraft/textures/trims/items/wings/dune.png: Optimized with no visible color loss[0m
+release	Run PackSquash	2026-07-27T03:39:31.5636551Z [37m🏁 assets/minecraft/textures/trims/items/wings/silence.png: Optimized with no visible color loss[0m
+release	Run PackSquash	2026-07-27T03:39:31.5664610Z ##[warning][33m⚡ assets/minecraft/lang/en_us.json:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.5686825Z ##[warning][33m⚡ assets/minecraft/lang/fr_fr.json:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.5716627Z [37m🏁 assets/minecraft/textures/trims/items/wings/spire.png: Optimized with no visible color loss[0m
+release	Run PackSquash	2026-07-27T03:39:31.5743197Z ##[warning][33m⚡ assets/minecraft/lang/de_de.json:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.5765902Z ##[warning][33m⚡ assets/minecraft/lang/zh_tw.json:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.5776592Z [37m🏁 assets/minecraft/textures/trims/items/wings/raiser.png: Optimized with no visible color loss[0m
+release	Run PackSquash	2026-07-27T03:39:31.5806583Z [37m🏁 assets/minecraft/textures/trims/items/wings/host.png: Optimized with no visible color loss[0m
+release	Run PackSquash	2026-07-27T03:39:31.5869021Z [37m🏁 assets/minecraft/lang/zh_tw.json: Minified[0m
+release	Run PackSquash	2026-07-27T03:39:31.5886317Z [37m🏁 assets/minecraft/lang/pt_br.json: Minified[0m
+release	Run PackSquash	2026-07-27T03:39:31.5988943Z [37m🏁 assets/minecraft/lang/fr_fr.json: Minified[0m
+release	Run PackSquash	2026-07-27T03:39:31.6307978Z [37m🏁 assets/minecraft/lang/ko_kr.json: Minified[0m
+release	Run PackSquash	2026-07-27T03:39:31.6346406Z ##[warning][33m⚡ assets/minecraft/lang/es_es.json:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.6349386Z ##[warning][33m⚡ assets/minecraft/lang/pt_br.json:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.6387053Z ##[warning][33m⚡ assets/minecraft/lang/zh_cn.json:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.6416727Z ##[warning][33m⚡ assets/minecraft/lang/ru_ru.json:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.6436734Z ##[warning][33m⚡ assets/minecraft/lang/vi_vn.json:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.6446601Z ##[warning][33m⚡ assets/minecraft/lang/ko_kr.json:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.6466729Z ##[warning][33m⚡ assets/minecraft/lang/it_it.json:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.6496037Z [37m🏁 assets/minecraft/lang/en_us.json: Minified[0m
+release	Run PackSquash	2026-07-27T03:39:31.6637185Z [37m🏁 assets/minecraft/lang/zh_cn.json: Minified[0m
+release	Run PackSquash	2026-07-27T03:39:31.6647172Z ##[warning][33m⚡ assets/minecraft/items/filled_map.json:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.6756841Z [37m🏁 assets/minecraft/lang/vi_vn.json: Minified[0m
+release	Run PackSquash	2026-07-27T03:39:31.6776356Z [37m🏁 assets/minecraft/lang/it_it.json: Minified[0m
+release	Run PackSquash	2026-07-27T03:39:31.6803004Z ##[warning][33m⚡ assets/minecraft/items/structure_block.json:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.6826423Z [37m🏁 assets/minecraft/items/structure_block.json: Minified[0m
+release	Run PackSquash	2026-07-27T03:39:31.7059433Z [37m🏁 assets/minecraft/lang/es_es.json: Minified[0m
+release	Run PackSquash	2026-07-27T03:39:31.7118063Z ##[warning][33m⚡ assets/minecraft/items/ominous_trial_key.json:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.7146583Z ##[warning][33m⚡ assets/elytratrims/icon.png: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.7176299Z [37m🏁 assets/minecraft/items/trial_key.json: Minified[0m
+release	Run PackSquash	2026-07-27T03:39:31.7336865Z [37m🏁 assets/minecraft/lang/de_de.json: Minified[0m
+release	Run PackSquash	2026-07-27T03:39:31.7357246Z ##[warning][33m⚡ assets/minecraft/items/trial_key.json:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.7359364Z [37m🏁 assets/minecraft/items/filled_map.json: Minified[0m
+release	Run PackSquash	2026-07-27T03:39:31.7387070Z ##[warning][33m⚡ assets/elytratrims/textures/trims/entity/wings/stars.png:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.7417126Z ##[warning][33m⚡ assets/elytratrims/textures/trims/entity/wings/whirl.png:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.7605586Z [37m🏁 assets/minecraft/items/ominous_trial_key.json: Minified[0m
+release	Run PackSquash	2026-07-27T03:39:31.7637765Z ##[warning][33m⚡ assets/elytratrims/textures/trims/entity/wings/construction.png:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.7647173Z ##[warning][33m⚡ assets/elytratrims/textures/trims/entity/wings/web.png:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.7704555Z [37m🏁 assets/elytratrims/textures/trims/entity/wings/fly.png: Optimized with 100% quality color quantization[0m
+release	Run PackSquash	2026-07-27T03:39:31.7718810Z ##[warning][33m⚡ assets/elytratrims/textures/trims/entity/wings/fly.png:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.7736813Z [37m🏁 assets/elytratrims/textures/trims/entity/wings/grate.png: Optimized with 100% quality color quantization[0m
+release	Run PackSquash	2026-07-27T03:39:31.8017874Z [37m🏁 assets/elytratrims/textures/trims/entity/wings/gems.png: Optimized with 100% quality color quantization[0m
+release	Run PackSquash	2026-07-27T03:39:31.8166957Z [37m🏁 assets/minecraft/lang/ru_ru.json: Minified[0m
+release	Run PackSquash	2026-07-27T03:39:31.8417477Z [37m🏁 assets/elytratrims/textures/trims/entity/wings/whirl.png: Optimized with 100% quality color quantization[0m
+release	Run PackSquash	2026-07-27T03:39:31.8427510Z ##[warning][33m⚡ assets/elytratrims/textures/trims/entity/wings/grid.png:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.8457225Z ##[warning][33m⚡ assets/elytratrims/textures/trims/entity/wings/gems.png:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.8460240Z ##[warning][33m⚡ assets/elytratrims/textures/gui/sprites/container/slot/pattern.png:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.8462898Z ##[warning][33m⚡ assets/elytratrims/textures/trims/entity/wings/grate.png:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.8486101Z [37m🏁 assets/elytratrims/textures/trims/entity/wings/construction.png: Optimized with 100% quality color quantization[0m
+release	Run PackSquash	2026-07-27T03:39:31.8516779Z [37m🏁 assets/elytratrims/textures/feature/bad_apple.png.mcmeta: Minified[0m
+release	Run PackSquash	2026-07-27T03:39:31.8547198Z ##[warning][33m⚡ assets/elytratrims/textures/feature/bad_apple.png:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.8567329Z ##[warning][33m⚡ assets/elytratrims/textures/feature/bad_apple.png.mcmeta:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.8605595Z ##[warning][33m⚡ assets/elytratrims/icon.png:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.8669429Z ##[warning][33m⚡ assets/elytratrims/shaders/core/elytratrims_gateway.vsh:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.8710335Z ##[error][1m[31m❌ assets/elytratrims/textures/feature/bad_apple.png: Invalid PNG: The texture width or height exceeds the configured maximum size. More information: <https://packsquash.aylas.org/links/Too-big-PNG-help>[0m
+release	Run PackSquash	2026-07-27T03:39:31.8713557Z [37m🏁 assets/elytratrims/textures/gui/sprites/container/slot/pattern.png: Optimized with no visible color loss[0m
+release	Run PackSquash	2026-07-27T03:39:31.8715711Z ##[warning][33m⚡ assets/elytratrims/shaders/core/elytratrims_gateway.fsh:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.8718538Z ##[warning][33m⚡ assets/elytratrims/lang/en_us.json:Zone.Identifier: Skipped[0m
+release	Run PackSquash	2026-07-27T03:39:31.8720506Z [37m🏁 assets/elytratrims/textures/trims/entity/wings/stars.png: Optimized with 100% quality color quantization[0m
+release	Run PackSquash	2026-07-27T03:39:31.8755589Z [37m🏁 assets/elytratrims/textures/trims/entity/wings/grid.png: Optimized with 100% quality color quantization[0m
+release	Run PackSquash	2026-07-27T03:39:31.8967536Z [37m🏁 assets/elytratrims/textures/trims/entity/wings/web.png: Optimized with 100% quality color quantization[0m
+release	Run PackSquash	2026-07-27T03:39:31.9207470Z [37m🏁 assets/elytratrims/shaders/core/elytratrims_gateway.vsh: Validated and copied[0m
+release	Run PackSquash	2026-07-27T03:39:31.9561035Z [37m🏁 assets/elytratrims/shaders/core/elytratrims_gateway.fsh: Validated and copied[0m
+release	Run PackSquash	2026-07-27T03:39:31.9577371Z ##[error][1m[31m❌ Pack processing error: An error occurred while processing a pack file
+release	Run PackSquash	2026-07-27T03:39:31.9579564Z    Another error message with more information was emitted before. You might need to scroll up to see it.
+release	Run PackSquash	2026-07-27T03:39:31.9581309Z    These troubleshooting instructions might be useful: <https://packsquash.aylas.org/links/Troubleshooting-pack-processing-errors>[0m
+release	Run PackSquash	2026-07-27T03:39:31.9602994Z ##[error]The process '/home/runner/work/_temp/packsquash-1040c4a92c59083e9c206174a4ad7103/packsquash' failed with exit code 128
