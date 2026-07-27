@@ -12,8 +12,8 @@ permissions:
 jobs:
   process-comment:
     runs-on: ubuntu-latest
-    # Only run if the issue is a painting submission, and it is closed
-    if: github.event.issue.state == 'closed' && contains(github.event.issue.labels.*.name, 'painting-submission')
+    # Only run if the issue is a painting submission (whether open or closed)
+    if: contains(github.event.issue.labels.*.name, 'painting-submission')
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -58,3 +58,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: gh workflow run release.yml --ref main
+        
+      - name: Close Issue (if open)
+        if: success() && github.event.issue.state == 'open'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh issue close ${{ github.event.issue.number }}
