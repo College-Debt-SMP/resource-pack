@@ -40,7 +40,7 @@ jobs:
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
           
           # Add all changes including deletions (-A tracks removed files too)
-          git add -A resource-pack/assets/cdsmp/textures/painting/ data-pack/data/cdsmp/painting_variant/ data-pack/data/minecraft/tags/painting_variant/ .submission_state/
+          git add -A resource-pack/assets/cdsmp/textures/painting/ data-pack/data/cdsmp/painting_variant/ data-pack/data/cdsmp/recipe/ data-pack/data/minecraft/tags/painting_variant/ .submission_state/
           
           # Use ACTION_TYPE env var set by the python script to make the commit message descriptive
           ACTION_TYPE="${ACTION_TYPE:-update}"

@@ -9,6 +9,30 @@ import subprocess
 
 MAX_ZIP_SIZE_MB = 50
 MAX_ZIP_SIZE_BYTES = MAX_ZIP_SIZE_MB * 1024 * 1024
+PAINTING_AUTHOR = "College Debt SMP"
+RECIPE_DIR = "data-pack/data/cdsmp/recipe/painting_variant"
+
+def build_variant_json(final_name, width, height):
+    return {
+        "asset_id": f"cdsmp:{final_name}",
+        "width": width,
+        "height": height,
+        "title": final_name,
+        "author": PAINTING_AUTHOR,
+    }
+
+def build_stonecutter_recipe(final_name):
+    return {
+        "type": "minecraft:stonecutting",
+        "ingredient": "minecraft:painting",
+        "result": {
+            "id": "minecraft:painting",
+            "components": {
+                "minecraft:painting/variant": f"cdsmp:{final_name}",
+            },
+            "count": 1,
+        },
+    }
 
 def post_comment(issue_number, repo, message):
     print(f"Posting comment: {message}")
@@ -42,7 +66,8 @@ def process_zips(zip_links, issue_number, repo):
     state = {
         "variants": [],
         "pngs": [],
-        "jsons": []
+        "jsons": [],
+        "recipes": [],
     }
 
     os.makedirs("temp_downloads", exist_ok=True)
@@ -138,12 +163,14 @@ def process_zips(zip_links, issue_number, repo):
 
                         target_data_dir = "data-pack/data/cdsmp/painting_variant"
                         os.makedirs(target_data_dir, exist_ok=True)
+                        os.makedirs(RECIPE_DIR, exist_ok=True)
 
                         final_name = original_name
                         counter = 1
                         while (
                             os.path.exists(os.path.join(target_texture_dir, f"{final_name}.png")) or
-                            os.path.exists(os.path.join(target_data_dir, f"{final_name}.json"))
+                            os.path.exists(os.path.join(target_data_dir, f"{final_name}.json")) or
+                            os.path.exists(os.path.join(RECIPE_DIR, f"{final_name}.json"))
                         ):
                             final_name = f"{original_name}-{counter}"
                             counter += 1
@@ -153,15 +180,15 @@ def process_zips(zip_links, issue_number, repo):
                         with z.open(png_path) as source_png, open(target_png_file, "wb") as target_png:
                             shutil.copyfileobj(source_png, target_png)
 
-                        variant_json = {
-                            "asset_id": f"cdsmp:{final_name}",
-                            "width": width,
-                            "height": height
-                        }
+                        variant_json = build_variant_json(final_name, width, height)
 
                         target_json_file = os.path.join(target_data_dir, f"{final_name}.json")
                         with open(target_json_file, "w") as f:
                             json.dump(variant_json, f, indent=2)
+
+                        recipe_file = os.path.join(RECIPE_DIR, f"{final_name}.json")
+                        with open(recipe_file, "w") as f:
+                            json.dump(build_stonecutter_recipe(final_name), f, indent=2)
 
                         print(f"Processed painting: {final_name}")
                         extracted_any_valid = True
@@ -171,6 +198,7 @@ def process_zips(zip_links, issue_number, repo):
                         state["variants"].append(variant_str)
                         state["pngs"].append(target_png_file)
                         state["jsons"].append(target_json_file)
+                        state["recipes"].append(recipe_file)
 
             except zipfile.BadZipFile:
                 print(f"Bad zip file from {url}")

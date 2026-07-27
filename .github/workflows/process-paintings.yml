@@ -39,7 +39,7 @@ jobs:
           # Bug 7 fix: explicitly set the remote URL with the token to ensure push works
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
 
-          git add resource-pack/assets/cdsmp/textures/painting/ data-pack/data/cdsmp/painting_variant/ data-pack/data/minecraft/tags/painting_variant/ .submission_state/
+          git add resource-pack/assets/cdsmp/textures/painting/ data-pack/data/cdsmp/painting_variant/ data-pack/data/cdsmp/recipe/ data-pack/data/minecraft/tags/painting_variant/ .submission_state/
 
           # Only commit if there are staged changes
           if git diff-index --quiet HEAD --; then

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "minecraft:painting",
+  "result": {
+    "id": "minecraft:painting",
+    "components": {
+      "minecraft:painting/variant": "cdsmp:tort-pot"
+    },
+    "count": 1
+  }
+}

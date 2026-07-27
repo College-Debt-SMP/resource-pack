@@ -21,9 +21,10 @@ def do_undo(issue_number, repo):
     variants = set(state.get("variants", []))
     pngs = state.get("pngs", [])
     jsons = state.get("jsons", [])
+    recipes = state.get("recipes", [])
     
-    # Delete the generated PNGs and JSONs
-    for file_path in pngs + jsons:
+    # Delete the generated PNGs, variant JSONs, and stonecutter recipes
+    for file_path in pngs + jsons + recipes:
         if os.path.exists(file_path):
             os.remove(file_path)
             
