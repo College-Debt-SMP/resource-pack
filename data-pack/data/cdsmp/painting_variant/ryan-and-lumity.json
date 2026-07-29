@@ -2,6 +2,12 @@
   "asset_id": "cdsmp:ryan-and-lumity",
   "width": 3,
   "height": 3,
-  "title": "Ryan and Lumity",
-  "author": "College Debt SMP"
+  "title": {
+    "text": "Ryan and Lumity",
+    "color": "aqua"
+  },
+  "author": {
+    "text": "College Debt SMP",
+    "color": "gray"
+  }
 }

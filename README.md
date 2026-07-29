@@ -41,6 +41,12 @@ You can manage or modify your submission directly from the closed issue thread:
 - If the submission has **multiple** paintings, the slug is required. If you omit it or use an unknown slug, the bot will list the available slugs.
 - This only changes the display title used in the stonecutter UI. The `cdsmp:` resource ID stays the same.
 
+**Change a painting author:**
+- If the submission has **one** painting, reply with: `author Alice`
+- Or target a slug: `author tortellini_comfort Alice`
+- Same multi-painting slug rules as `rename`.
+- This only changes the author line in the stonecutter tooltip (shown in gray).
+
 **Undo / Revert a Submission:**
 - Reply to your closed submission issue with the exact comment: `undo`
 - The bot will remove all textures and datapack entries associated with that issue.

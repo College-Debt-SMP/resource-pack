@@ -2,6 +2,12 @@
   "asset_id": "cdsmp:adam-scott-05-nimbus-cine-01",
   "width": 4,
   "height": 2,
-  "title": "Lightfall",
-  "author": "College Debt SMP"
+  "title": {
+    "text": "Lightfall",
+    "color": "aqua"
+  },
+  "author": {
+    "text": "College Debt SMP",
+    "color": "gray"
+  }
 }

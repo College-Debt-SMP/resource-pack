@@ -2,6 +2,12 @@
   "asset_id": "cdsmp:blackmail",
   "width": 4,
   "height": 3,
-  "title": "Blackmail",
-  "author": "College Debt SMP"
+  "title": {
+    "text": "Blackmail",
+    "color": "aqua"
+  },
+  "author": {
+    "text": "College Debt SMP",
+    "color": "gray"
+  }
 }

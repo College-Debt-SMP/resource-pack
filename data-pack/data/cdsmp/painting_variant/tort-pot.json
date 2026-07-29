@@ -2,6 +2,12 @@
   "asset_id": "cdsmp:tort-pot",
   "width": 1,
   "height": 1,
-  "title": "Tort's Golden Pot",
-  "author": "College Debt SMP"
+  "title": {
+    "text": "Tort's Golden Pot",
+    "color": "aqua"
+  },
+  "author": {
+    "text": "College Debt SMP",
+    "color": "gray"
+  }
 }

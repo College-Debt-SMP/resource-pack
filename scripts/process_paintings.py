@@ -10,15 +10,36 @@ import subprocess
 MAX_ZIP_SIZE_MB = 50
 MAX_ZIP_SIZE_BYTES = MAX_ZIP_SIZE_MB * 1024 * 1024
 PAINTING_AUTHOR = "College Debt SMP"
+TITLE_COLOR = "aqua"
+AUTHOR_COLOR = "gray"
 RECIPE_DIR = "data-pack/data/cdsmp/recipe/painting_variant"
+
+def colored_title(display_title):
+    return {"text": display_title, "color": TITLE_COLOR}
+
+def colored_author(author=PAINTING_AUTHOR):
+    return {"text": author, "color": AUTHOR_COLOR}
+
+def title_text(value, fallback=""):
+    """Extract plain display text from a string or text-component title/author."""
+    if isinstance(value, str):
+        return value
+    if isinstance(value, dict):
+        text = value.get("text")
+        if isinstance(text, str):
+            return text
+    return fallback
+
+# Alias for author/title text-component extraction.
+component_text = title_text
 
 def build_variant_json(final_name, width, height, display_title):
     return {
         "asset_id": f"cdsmp:{final_name}",
         "width": width,
         "height": height,
-        "title": display_title,
-        "author": PAINTING_AUTHOR,
+        "title": colored_title(display_title),
+        "author": colored_author(),
     }
 
 def build_stonecutter_recipe(final_name):

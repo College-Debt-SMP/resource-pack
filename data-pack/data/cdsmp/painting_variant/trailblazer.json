@@ -2,6 +2,12 @@
   "asset_id": "cdsmp:trailblazer",
   "width": 2,
   "height": 2,
-  "title": "Trailblazer",
-  "author": "College Debt SMP"
+  "title": {
+    "text": "Trailblazer",
+    "color": "aqua"
+  },
+  "author": {
+    "text": "College Debt SMP",
+    "color": "gray"
+  }
 }

@@ -6,12 +6,21 @@ import json
 # Ensure the scripts/ directory is on the path so process_paintings can be imported
 # regardless of the working directory the runner uses (repo root).
 sys.path.insert(0, os.path.join(os.path.dirname(__file__)))
-from process_paintings import extract_zip_links, process_zips, post_comment
+from process_paintings import (
+    colored_author,
+    colored_title,
+    component_text,
+    extract_zip_links,
+    process_zips,
+    post_comment,
+    title_text,
+)
 
 MANAGE_HINT = (
     "*You can reply with **`help`** for all commands, **`list`** to see your paintings, "
-    "**`rename <title>`** (or **`rename <slug> <title>`**) to change a title, exactly **`undo`** "
-    "to revert, or upload a **new zip file** to replace the submission.*"
+    "**`rename <title>`** / **`author <name>`** (or with a **`<slug>`** prefix) to change "
+    "tooltip text, exactly **`undo`** to revert, or upload a **new zip file** to replace "
+    "the submission.*"
 )
 
 HELP_TEXT = """Available commands for this painting submission:
@@ -19,14 +28,16 @@ HELP_TEXT = """Available commands for this painting submission:
 - `help` — show this command list
 - `list` — list paintings in this submission (slug, title, dimensions)
 - `rename <title>` — rename the title when this submission has exactly one painting
-- `rename <slug> <title>` — rename a specific painting by slug (required when there are multiple)
+- `rename <slug> <title>` — rename a specific painting's title by slug (required when there are multiple)
+- `author <name>` — set the author when this submission has exactly one painting
+- `author <slug> <name>` — set a specific painting's author by slug (required when there are multiple)
 - `undo` — remove all paintings from this submission
 - Upload a **new `.zip` file** — replace this submission with a new MCTools pack
 
 Notes:
-- `rename` only changes the display title used in the stonecutter UI. The `cdsmp:` resource ID stays the same.
-- If this submission has one painting and you write `rename <slug>` with that painting's slug, it is treated as setting the title to that same text.
-- If `rename` is missing a slug on a multi-painting submission, or uses an unknown slug, the bot will list available slugs."""
+- `rename` and `author` only change stonecutter tooltip text. The `cdsmp:` resource ID stays the same.
+- If this submission has one painting and you write `rename <slug>` or `author <slug>` with that painting's slug, it is treated as setting the value to that same text.
+- If a slug is missing on a multi-painting submission, or an unknown slug is used, the bot will list available slugs."""
 
 
 def normalize_comment_body(raw):
@@ -75,7 +86,7 @@ def painting_entries(state):
             try:
                 with open(json_path, "r") as f:
                     data = json.load(f)
-                title = data.get("title", slug)
+                title = title_text(data.get("title"), slug)
                 width = data.get("width", "?")
                 height = data.get("height", "?")
             except json.JSONDecodeError:
@@ -97,15 +108,17 @@ def format_painting_list(state):
         )
     return "\n".join(lines)
 
-def parse_rename(remainder, slugs):
+def parse_targeted_value(remainder, slugs, *, command, value_label):
     """
-    Parse rename arguments.
-    Returns (slug, new_title, error_message).
-    error_message is set when the command cannot be applied.
+    Parse `command <value>` / `command <slug> <value>` arguments.
+    Returns (slug, new_value, error_message).
     """
     remainder = (remainder or "").strip()
     if not remainder:
-        return None, None, "❌ Missing title. Usage: `rename <title>` or `rename <slug> <title>`"
+        return None, None, (
+            f"❌ Missing {value_label}. Usage: `{command} <{value_label}>` or "
+            f"`{command} <slug> <{value_label}>`"
+        )
 
     if not slugs:
         return None, None, "❌ No paintings found in this submission."
@@ -116,13 +129,13 @@ def parse_rename(remainder, slugs):
 
     if first in slugs:
         if not rest:
-            # Single-painting ambiguity: `rename <slug>` means set the title to that
-            # same string (equivalent to `rename <slug> <slug>`).
+            # Single-painting ambiguity: `command <slug>` means set the value to that
+            # same string (equivalent to `command <slug> <slug>`).
             if len(slugs) == 1:
                 return first, first, None
             return None, None, (
-                f"❌ Missing new title for `{first}`.\n\n"
-                f"Usage: `rename {first} <new title>`"
+                f"❌ Missing new {value_label} for `{first}`.\n\n"
+                f"Usage: `{command} {first} <new {value_label}>`"
             )
         return first, rest, None
 
@@ -130,6 +143,10 @@ def parse_rename(remainder, slugs):
         return slugs[0], remainder, None
 
     return None, None, "multiple"
+
+def parse_rename(remainder, slugs):
+    """Backward-compatible wrapper around parse_targeted_value for titles."""
+    return parse_targeted_value(remainder, slugs, command="rename", value_label="title")
 
 def do_undo(issue_number, repo):
     """Reverts the changes made by a submission using its state file."""
@@ -191,12 +208,13 @@ def do_help(issue_number, repo):
     post_comment(issue_number, repo, HELP_TEXT)
     return True
 
-def do_rename(issue_number, repo, comment_body):
+def do_field_update(issue_number, repo, comment_body, *, command, field, colorize, value_label, verb):
+    """Shared handler for rename (title) and author updates."""
     state = load_state(issue_number)
     if not state:
         post_comment(
             issue_number, repo,
-            "❌ No submission state found for this issue. Nothing to rename."
+            f"❌ No submission state found for this issue. Nothing to {command}."
         )
         return False
 
@@ -205,13 +223,12 @@ def do_rename(issue_number, repo, comment_body):
     if not slugs:
         slugs = list(entries.keys())
 
-    match = re.match(r"^rename\s*(.*)$", comment_body, flags=re.IGNORECASE | re.DOTALL)
+    match = re.match(rf"^{re.escape(command)}\s*(.*)$", comment_body, flags=re.IGNORECASE | re.DOTALL)
     remainder = (match.group(1) if match else "").strip()
     parts = remainder.split(None, 1)
 
     # For multi-painting submissions, a slug-like first token that isn't in this
-    # submission is treated as an unknown target. Single-painting submissions
-    # always allow title-only renames (including multi-word titles).
+    # submission is treated as an unknown target.
     if (
         len(slugs) > 1
         and parts
@@ -223,17 +240,19 @@ def do_rename(issue_number, repo, comment_body):
             issue_number, repo,
             f"❌ Unknown slug `{parts[0]}` for this submission.\n\n"
             f"{format_painting_list(state)}\n\n"
-            "Usage: `rename <slug> <new title>`"
+            f"Usage: `{command} <slug> <new {value_label}>`"
         )
         return False
 
-    slug, new_title, error = parse_rename(remainder, slugs)
+    slug, new_value, error = parse_targeted_value(
+        remainder, slugs, command=command, value_label=value_label
+    )
     if error == "multiple":
         post_comment(
             issue_number, repo,
-            "❌ Multiple paintings in this submission — please specify which slug to rename.\n\n"
+            f"❌ Multiple paintings in this submission — please specify which slug to {command}.\n\n"
             f"{format_painting_list(state)}\n\n"
-            "Usage: `rename <slug> <new title>`"
+            f"Usage: `{command} <slug> <new {value_label}>`"
         )
         return False
     if error:
@@ -252,8 +271,14 @@ def do_rename(issue_number, repo, comment_body):
     with open(json_path, "r") as f:
         data = json.load(f)
 
-    old_title = data.get("title", slug)
-    data["title"] = new_title
+    old_value = component_text(data.get(field), slug)
+    data[field] = colorize(new_value)
+
+    # Keep the sibling tooltip field as a colored text component if it was still plain.
+    if field == "title" and isinstance(data.get("author"), str):
+        data["author"] = colored_author(data["author"])
+    elif field == "author" and isinstance(data.get("title"), str):
+        data["title"] = colored_title(data["title"])
 
     with open(json_path, "w") as f:
         json.dump(data, f, indent=2)
@@ -261,11 +286,35 @@ def do_rename(issue_number, repo, comment_body):
 
     post_comment(
         issue_number, repo,
-        f'✅ Renamed `{slug}` from "{old_title}" to "{new_title}". '
+        f'✅ {verb} `{slug}` from "{old_value}" to "{new_value}". '
         "A new release will be generated shortly.\n\n"
         + MANAGE_HINT
     )
     return True
+
+def do_rename(issue_number, repo, comment_body):
+    return do_field_update(
+        issue_number,
+        repo,
+        comment_body,
+        command="rename",
+        field="title",
+        colorize=colored_title,
+        value_label="title",
+        verb="Renamed",
+    )
+
+def do_author(issue_number, repo, comment_body):
+    return do_field_update(
+        issue_number,
+        repo,
+        comment_body,
+        command="author",
+        field="author",
+        colorize=colored_author,
+        value_label="author",
+        verb="Updated author for",
+    )
 
 def main():
     issue_number = os.environ.get("ISSUE_NUMBER")
@@ -297,6 +346,14 @@ def main():
         print("Processing RENAME request...")
         set_action_type("rename")
         if do_rename(issue_number, repo, comment_body):
+            sys.exit(0)
+        sys.exit(1)
+
+    # author ...
+    if re.match(r"^author(\s|$)", comment_body, flags=re.IGNORECASE):
+        print("Processing AUTHOR request...")
+        set_action_type("author")
+        if do_author(issue_number, repo, comment_body):
             sys.exit(0)
         sys.exit(1)
         
