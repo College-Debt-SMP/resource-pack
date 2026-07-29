@@ -7,26 +7,23 @@ import json
 # regardless of the working directory the runner uses (repo root).
 sys.path.insert(0, os.path.join(os.path.dirname(__file__)))
 from process_paintings import (
+    MANAGE_HINT,
     colored_author,
     colored_title,
     component_text,
     extract_zip_links,
+    format_painting_list,
+    format_success_comment,
+    painting_entries,
     process_zips,
     post_comment,
     title_text,
 )
 
-MANAGE_HINT = (
-    "*You can reply with **`help`** for all commands, **`list`** to see your paintings, "
-    "**`rename <title>`** / **`author <name>`** (or with a **`<slug>`** prefix) to change "
-    "tooltip text, exactly **`undo`** to revert, or upload a **new zip file** to replace "
-    "the submission.*"
-)
-
 HELP_TEXT = """Available commands for this painting submission:
 
 - `help` — show this command list
-- `list` — list paintings in this submission (slug, title, dimensions)
+- `list` — list paintings in this submission (slug, title, author, dimensions)
 - `rename <title>` — rename the title when this submission has exactly one painting
 - `rename <slug> <title>` — rename a specific painting's title by slug (required when there are multiple)
 - `author <name>` — set the author when this submission has exactly one painting
@@ -37,7 +34,23 @@ HELP_TEXT = """Available commands for this painting submission:
 Notes:
 - `rename` and `author` only change stonecutter tooltip text. The `cdsmp:` resource ID stays the same.
 - If this submission has one painting and you write `rename <slug>` or `author <slug>` with that painting's slug, it is treated as setting the value to that same text.
-- If a slug is missing on a multi-painting submission, or an unknown slug is used, the bot will list available slugs."""
+- If a slug is missing on a multi-painting submission, or an unknown slug is used, the bot will list available slugs.
+- You can batch several `rename` / `author` commands in one comment by putting each on its own line."""
+
+FIELD_COMMANDS = {
+    "rename": {
+        "field": "title",
+        "colorize": colored_title,
+        "value_label": "title",
+        "verb": "Renamed",
+    },
+    "author": {
+        "field": "author",
+        "colorize": colored_author,
+        "value_label": "author",
+        "verb": "Updated author for",
+    },
+}
 
 
 def normalize_comment_body(raw):
@@ -74,39 +87,6 @@ def variant_slugs(state):
         else:
             slugs.append(variant)
     return slugs
-
-def painting_entries(state):
-    """Return list of dicts: slug, title, width, height, json_path."""
-    entries = []
-    for json_path in state.get("jsons", []):
-        slug = os.path.splitext(os.path.basename(json_path))[0]
-        title = slug
-        width, height = "?", "?"
-        if os.path.exists(json_path):
-            try:
-                with open(json_path, "r") as f:
-                    data = json.load(f)
-                title = title_text(data.get("title"), slug)
-                width = data.get("width", "?")
-                height = data.get("height", "?")
-            except json.JSONDecodeError:
-                pass
-        entries.append({
-            "slug": slug,
-            "title": title,
-            "width": width,
-            "height": height,
-            "json_path": json_path,
-        })
-    return entries
-
-def format_painting_list(state):
-    lines = ["Available paintings in this submission:"]
-    for entry in painting_entries(state):
-        lines.append(
-            f'- `{entry["slug"]}` — "{entry["title"]}" ({entry["width"]}x{entry["height"]})'
-        )
-    return "\n".join(lines)
 
 def parse_targeted_value(remainder, slugs, *, command, value_label):
     """
@@ -147,6 +127,31 @@ def parse_targeted_value(remainder, slugs, *, command, value_label):
 def parse_rename(remainder, slugs):
     """Backward-compatible wrapper around parse_targeted_value for titles."""
     return parse_targeted_value(remainder, slugs, command="rename", value_label="title")
+
+def non_empty_lines(comment_body):
+    return [line.strip() for line in comment_body.splitlines() if line.strip()]
+
+def classify_update_line(line):
+    """Return (command, line) if this is a rename/author command line, else None."""
+    for command in FIELD_COMMANDS:
+        if re.match(rf"^{command}(\s|$)", line, flags=re.IGNORECASE):
+            return command, line
+    return None
+
+def collect_update_lines(comment_body):
+    """
+    Parse a comment into rename/author command lines.
+    Returns (commands, invalid_lines) where commands is a list of (command, line).
+    """
+    commands = []
+    invalid = []
+    for line in non_empty_lines(comment_body):
+        classified = classify_update_line(line)
+        if classified:
+            commands.append(classified)
+        else:
+            invalid.append(line)
+    return commands, invalid
 
 def do_undo(issue_number, repo):
     """Reverts the changes made by a submission using its state file."""
@@ -208,15 +213,14 @@ def do_help(issue_number, repo):
     post_comment(issue_number, repo, HELP_TEXT)
     return True
 
-def do_field_update(issue_number, repo, comment_body, *, command, field, colorize, value_label, verb):
-    """Shared handler for rename (title) and author updates."""
+def apply_field_update(issue_number, comment_body, *, command, field, colorize, value_label, verb):
+    """
+    Apply one rename/author update.
+    Returns (ok, message) without posting a GitHub comment.
+    """
     state = load_state(issue_number)
     if not state:
-        post_comment(
-            issue_number, repo,
-            f"❌ No submission state found for this issue. Nothing to {command}."
-        )
-        return False
+        return False, f"❌ No submission state found for this issue. Nothing to {command}."
 
     slugs = variant_slugs(state)
     entries = {entry["slug"]: entry for entry in painting_entries(state)}
@@ -236,37 +240,30 @@ def do_field_update(issue_number, repo, comment_body, *, command, field, coloriz
         and parts[0] not in slugs
         and re.fullmatch(r"[a-z0-9][a-z0-9_\-.]*", parts[0])
     ):
-        post_comment(
-            issue_number, repo,
+        return False, (
             f"❌ Unknown slug `{parts[0]}` for this submission.\n\n"
             f"{format_painting_list(state)}\n\n"
             f"Usage: `{command} <slug> <new {value_label}>`"
         )
-        return False
 
     slug, new_value, error = parse_targeted_value(
         remainder, slugs, command=command, value_label=value_label
     )
     if error == "multiple":
-        post_comment(
-            issue_number, repo,
+        return False, (
             f"❌ Multiple paintings in this submission — please specify which slug to {command}.\n\n"
             f"{format_painting_list(state)}\n\n"
             f"Usage: `{command} <slug> <new {value_label}>`"
         )
-        return False
     if error:
-        post_comment(issue_number, repo, error)
-        return False
+        return False, error
 
     entry = entries.get(slug)
     json_path = entry["json_path"] if entry else f"data-pack/data/cdsmp/painting_variant/{slug}.json"
     if not os.path.exists(json_path):
-        post_comment(
-            issue_number, repo,
+        return False, (
             f"❌ Painting file for `{slug}` was not found.\n\n{format_painting_list(state)}"
         )
-        return False
 
     with open(json_path, "r") as f:
         data = json.load(f)
@@ -284,13 +281,69 @@ def do_field_update(issue_number, repo, comment_body, *, command, field, coloriz
         json.dump(data, f, indent=2)
         f.write("\n")
 
-    post_comment(
-        issue_number, repo,
-        f'✅ {verb} `{slug}` from "{old_value}" to "{new_value}". '
-        "A new release will be generated shortly.\n\n"
-        + MANAGE_HINT
+    return True, f'✅ {verb} `{slug}` from "{old_value}" to "{new_value}".'
+
+def do_field_update(issue_number, repo, comment_body, *, command, field, colorize, value_label, verb):
+    """Shared handler for a single rename (title) or author update."""
+    ok, message = apply_field_update(
+        issue_number,
+        comment_body,
+        command=command,
+        field=field,
+        colorize=colorize,
+        value_label=value_label,
+        verb=verb,
     )
-    return True
+    if ok:
+        post_comment(
+            issue_number, repo,
+            f"{message} A new release will be generated shortly.\n\n" + MANAGE_HINT
+        )
+    else:
+        post_comment(issue_number, repo, message)
+    return ok
+
+def do_batch_updates(issue_number, repo, command_lines):
+    """
+    Apply multiple rename/author lines from one comment.
+    Returns True if at least one update succeeded.
+    """
+    results = []
+    success_count = 0
+
+    for command, line in command_lines:
+        spec = FIELD_COMMANDS[command]
+        ok, message = apply_field_update(
+            issue_number,
+            line,
+            command=command,
+            field=spec["field"],
+            colorize=spec["colorize"],
+            value_label=spec["value_label"],
+            verb=spec["verb"],
+        )
+        # Keep batch replies compact: one status line per command when possible.
+        first_line = message.splitlines()[0]
+        results.append(first_line)
+        if ok:
+            success_count += 1
+        elif "\n" in message:
+            # Include slug list / usage details for failures that need them.
+            results.extend(message.splitlines()[1:])
+
+    if success_count:
+        body = "\n".join(results)
+        body += (
+            f"\n\n✅ Applied {success_count}/{len(command_lines)} update(s). "
+            "A new release will be generated shortly.\n\n"
+            + MANAGE_HINT
+        )
+        post_comment(issue_number, repo, body)
+        return True
+
+    body = "\n".join(results) if results else "❌ No updates applied."
+    post_comment(issue_number, repo, body)
+    return False
 
 def do_rename(issue_number, repo, comment_body):
     return do_field_update(
@@ -341,23 +394,7 @@ def main():
             sys.exit(0)
         sys.exit(1)
 
-    # rename ...
-    if re.match(r"^rename(\s|$)", comment_body, flags=re.IGNORECASE):
-        print("Processing RENAME request...")
-        set_action_type("rename")
-        if do_rename(issue_number, repo, comment_body):
-            sys.exit(0)
-        sys.exit(1)
-
-    # author ...
-    if re.match(r"^author(\s|$)", comment_body, flags=re.IGNORECASE):
-        print("Processing AUTHOR request...")
-        set_action_type("author")
-        if do_author(issue_number, repo, comment_body):
-            sys.exit(0)
-        sys.exit(1)
-        
-    # Check if this is an UNDO command
+    # undo (exact)
     if comment_body.lower() == "undo":
         print("Processing UNDO request...")
         success = do_undo(issue_number, repo)
@@ -372,6 +409,31 @@ def main():
         else:
             post_comment(issue_number, repo, "❌ Failed to undo: No previous submission state found for this issue.")
             sys.exit(1)
+
+    # One or more rename/author lines (supports batching in a single comment)
+    command_lines, invalid_lines = collect_update_lines(comment_body)
+    if command_lines:
+        if invalid_lines:
+            preview = "\n".join(f"- `{line}`" for line in invalid_lines[:5])
+            post_comment(
+                issue_number, repo,
+                "❌ Could not process this comment because some lines are not `rename`/`author` commands:\n"
+                f"{preview}\n\n"
+                "Put each `rename` or `author` command on its own line."
+            )
+            sys.exit(1)
+
+        if len(command_lines) == 1:
+            command = command_lines[0][0]
+            print(f"Processing {command.upper()} request...")
+            set_action_type(command)
+        else:
+            print(f"Processing BATCH update ({len(command_lines)} commands)...")
+            set_action_type("update")
+
+        if do_batch_updates(issue_number, repo, command_lines):
+            sys.exit(0)
+        sys.exit(1)
             
     # Check if this is a RESUBMIT command (contains a zip)
     zip_links = extract_zip_links(comment_body)
@@ -387,9 +449,11 @@ def main():
         if state:
             post_comment(
                 issue_number, repo,
-                "✅ Resubmission successfully processed! The new paintings have replaced your old submission. "
-                "A new release will be generated shortly.\n\n"
-                + MANAGE_HINT
+                format_success_comment(
+                    state,
+                    "✅ Resubmission successfully processed! The new paintings have replaced your old submission. "
+                    "A new release will be generated shortly.",
+                ),
             )
             sys.exit(0)
         else:

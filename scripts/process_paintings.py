@@ -33,6 +33,58 @@ def title_text(value, fallback=""):
 # Alias for author/title text-component extraction.
 component_text = title_text
 
+MANAGE_HINT = (
+    "*You can reply with **`help`** for all commands, **`list`** to see your paintings, "
+    "**`rename <title>`** / **`author <name>`** (or with a **`<slug>`** prefix) to change "
+    "tooltip text, exactly **`undo`** to revert, or upload a **new zip file** to replace "
+    "the submission. Put multiple `rename`/`author` commands on separate lines in one comment "
+    "to apply them together.*"
+)
+
+def painting_entries(state):
+    """Return list of dicts: slug, title, author, width, height, json_path."""
+    entries = []
+    for json_path in state.get("jsons", []):
+        slug = os.path.splitext(os.path.basename(json_path))[0]
+        title = slug
+        author = PAINTING_AUTHOR
+        width, height = "?", "?"
+        if os.path.exists(json_path):
+            try:
+                with open(json_path, "r") as f:
+                    data = json.load(f)
+                title = title_text(data.get("title"), slug)
+                author = title_text(data.get("author"), PAINTING_AUTHOR)
+                width = data.get("width", "?")
+                height = data.get("height", "?")
+            except json.JSONDecodeError:
+                pass
+        entries.append({
+            "slug": slug,
+            "title": title,
+            "author": author,
+            "width": width,
+            "height": height,
+            "json_path": json_path,
+        })
+    return entries
+
+def format_painting_list(state):
+    lines = ["Available paintings in this submission:"]
+    for entry in painting_entries(state):
+        lines.append(
+            f'- `{entry["slug"]}` — "{entry["title"]}" by {entry["author"]} '
+            f'({entry["width"]}x{entry["height"]})'
+        )
+    return "\n".join(lines)
+
+def format_success_comment(state, headline):
+    return (
+        f"{headline}\n\n"
+        f"{format_painting_list(state)}\n\n"
+        f"{MANAGE_HINT}"
+    )
+
 def build_variant_json(final_name, width, height, display_title):
     return {
         "asset_id": f"cdsmp:{final_name}",
@@ -74,11 +126,57 @@ def find_in_zip(file_list, filename_suffix_lower):
     return None
 
 def extract_zip_links(body):
-    """Extract all zip links from markdown body."""
-    return re.findall(
-        r'\[.*?\.zip\]\((https://github\.com/(?:[^/]+)/(?:[^/]+)/files/[^\)]+|https://github\.com/user-attachments/[^\)]+)\)',
-        body
-    )
+    """
+    Extract GitHub zip attachment URLs from an issue or comment body.
+
+    Supports:
+    - Markdown links: [name.zip](https://github.com/...)
+    - Markdown links where only the URL looks like a GitHub file attachment
+      (common when issue templates/forms wrap uploads in labeled fields)
+    - Bare GitHub user-attachments / repo files URLs
+    """
+    if not body:
+        return []
+
+    links = []
+    seen = set()
+
+    def add(url):
+        url = url.strip().rstrip(").,;\"'>")
+        if not url or url in seen:
+            return
+        seen.add(url)
+        links.append(url)
+
+    def looks_like_github_upload(url):
+        url_l = url.lower()
+        return (
+            "github.com/user-attachments/" in url_l
+            or re.search(r"github\.com/[^/]+/[^/]+/files/\d+", url_l) is not None
+        )
+
+    # Markdown links: [label](url)
+    for label, url in re.findall(
+        r"\[([^\]]*)\]\((https://github\.com/[^)\s]+)\)",
+        body,
+        flags=re.IGNORECASE,
+    ):
+        label_l = label.lower()
+        url_l = url.lower()
+        if label_l.endswith(".zip") or ".zip" in url_l or looks_like_github_upload(url):
+            add(url)
+
+    # Bare URLs (no markdown wrapper)
+    for url in re.findall(
+        r"https://github\.com/(?:user-attachments/[^\s<>\]]+|[^/\s]+/[^/\s]+/files/\d+[^\s<>\]]*)",
+        body,
+        flags=re.IGNORECASE,
+    ):
+        url_l = url.lower()
+        if ".zip" in url_l or "user-attachments/" in url_l:
+            add(url)
+
+    return links
 
 def process_zips(zip_links, issue_number, repo):
     """Downloads zips, extracts them, handles state, and returns state dict or None on failure."""
@@ -289,7 +387,8 @@ def main():
         post_comment(
             issue_number, repo,
             "I couldn't find any `.zip` file attached to this issue. "
-            "Please ensure you upload the zip file directly into the issue description."
+            "Please upload the MCTools zip directly in the issue body "
+            "(issue template text around the attachment is fine)."
         )
         sys.exit(1)
 
@@ -302,7 +401,15 @@ def main():
             "Please make sure the zip contains a `mctools.json` file and valid painting PNGs, then try again."
         )
         sys.exit(1)
-        
+
+    post_comment(
+        issue_number, repo,
+        format_success_comment(
+            state,
+            "✅ Paintings successfully processed and added to the server resource pack! "
+            "A new release will be generated shortly.",
+        ),
+    )
     print("Successfully processed paintings.")
 
 if __name__ == "__main__":

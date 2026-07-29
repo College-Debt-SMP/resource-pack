@@ -16,13 +16,13 @@ Players can submit custom paintings to be added to the server-wide resource pack
 3. Download the generated resource pack `.zip` file. Ensure the zip contains the `mctools.json` file and the painting PNG textures.
 
 ### Step 2: Submit via GitHub Issues
-1. Open a **New Issue** in this repository.
-2. Attach your downloaded `.zip` file directly into the issue description box.
-3. Add the **`painting-submission`** label to your issue.
+1. Open a **New Issue** in this repository (use the painting submission template if available).
+2. Attach your downloaded `.zip` file in the issue body / upload field. Instructional text in the template is fine — the bot looks for the zip attachment itself.
+3. Add the **`painting-submission`** label to your issue (the template may apply this automatically).
 4. The automated workflow will run automatically to:
    - Validate your `.zip` file.
    - Extract the painting textures and generate the corresponding datapack entries.
-   - Automatically commit the assets, publish a new release, and close the issue with a confirmation message.
+   - Automatically commit the assets, publish a new release, and close the issue with a confirmation message that lists your paintings.
 
 ### Step 3 (optional): Managing Existing Submissions
 
@@ -33,7 +33,7 @@ You can manage or modify your submission directly from the closed issue thread:
 
 **List paintings in this submission:**
 - Reply with the exact comment: `list`
-- The bot will reply with each painting's slug, current title, and dimensions.
+- The bot will reply with each painting's slug, current title, author, and dimensions.
 
 **Rename a painting title:**
 - If the submission has **one** painting, reply with: `rename Tortellini's Sandwich`
@@ -46,6 +46,15 @@ You can manage or modify your submission directly from the closed issue thread:
 - Or target a slug: `author tortellini_comfort Alice`
 - Same multi-painting slug rules as `rename`.
 - This only changes the author line in the stonecutter tooltip (shown in gray).
+
+**Batch title/author updates:**
+- Put multiple `rename` / `author` commands on separate lines in the same comment, for example:
+  ```
+  rename tort-pot Tortellini's Pot
+  author tort-pot CherryQuartzio
+  rename another-painting Vegetable Bowl
+  ```
+- The bot applies them in one workflow run and replies with a per-line summary.
 
 **Undo / Revert a Submission:**
 - Reply to your closed submission issue with the exact comment: `undo`
