@@ -1,0 +1,36 @@
+{
+  "model": {
+    "type": "minecraft:condition",
+    "property": "minecraft:has_component",
+    "component": "minecraft:custom_name",
+    "on_true": {
+      "type": "minecraft:select",
+      "property": "minecraft:component",
+      "component": "minecraft:custom_name",
+      "cases": [
+        {
+          "when": "Glow Berry Pie Dish",
+          "model": {
+            "type": "minecraft:model",
+            "model": "item/foods/glow_berry_pie_dish"
+          }
+        },
+        {
+          "when": "Tarta de bayas brillantes Plato",
+          "model": {
+            "type": "minecraft:model",
+            "model": "item/foods/glow_berry_pie_dish"
+          }
+        }
+      ],
+      "fallback": {
+        "type": "minecraft:model",
+        "model": "minecraft:item/food_glow_berry_pie"
+      }
+    },
+    "on_false": {
+      "type": "minecraft:model",
+      "model": "minecraft:item/food_glow_berry_pie"
+    }
+  }
+}

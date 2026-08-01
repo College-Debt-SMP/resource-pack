@@ -1,0 +1,14 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "moldomre:quartz"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "moldomre:quartz"
+      }
+    ]
+  }
+}

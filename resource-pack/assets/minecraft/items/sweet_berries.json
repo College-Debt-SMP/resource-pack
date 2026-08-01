@@ -1,0 +1,36 @@
+{
+  "model": {
+    "type": "minecraft:condition",
+    "property": "minecraft:has_component",
+    "component": "minecraft:custom_name",
+    "on_true": {
+      "type": "minecraft:select",
+      "property": "minecraft:component",
+      "component": "minecraft:custom_name",
+      "cases": [
+        {
+          "when": "Sweet Berries Dish",
+          "model": {
+            "type": "minecraft:model",
+            "model": "item/foods/sweet_berries_dish"
+          }
+        },
+        {
+          "when": "Bayas dulces Plato",
+          "model": {
+            "type": "minecraft:model",
+            "model": "item/foods/sweet_berries_dish"
+          }
+        }
+      ],
+      "fallback": {
+        "type": "minecraft:model",
+        "model": "minecraft:item/sweet_berries"
+      }
+    },
+    "on_false": {
+      "type": "minecraft:model",
+      "model": "minecraft:item/sweet_berries"
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "model": {
+    "type": "minecraft:condition",
+    "property": "minecraft:has_component",
+    "component": "minecraft:custom_name",
+    "on_true": {
+      "type": "minecraft:select",
+      "property": "minecraft:component",
+      "component": "minecraft:custom_name",
+      "cases": [
+        {
+          "when": "Melon Slice Dish",
+          "model": {
+            "type": "minecraft:model",
+            "model": "item/foods/melon_slice_dish"
+          }
+        },
+        {
+          "when": "Rebanada de sandía Plato",
+          "model": {
+            "type": "minecraft:model",
+            "model": "item/foods/melon_slice_dish"
+          }
+        }
+      ],
+      "fallback": {
+        "type": "minecraft:model",
+        "model": "minecraft:item/melon_slice"
+      }
+    },
+    "on_false": {
+      "type": "minecraft:model",
+      "model": "minecraft:item/melon_slice"
+    }
+  }
+}

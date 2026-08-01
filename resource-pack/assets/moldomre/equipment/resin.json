@@ -1,0 +1,14 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "moldomre:resin"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "moldomre:resin"
+      }
+    ]
+  }
+}

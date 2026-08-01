@@ -1,0 +1,32 @@
+{
+    "sources": [
+        {
+            "type": "paletted_permutations",
+            "textures": [
+                "trims/items/leggings_trim",
+                "trims/items/chestplate_trim",
+                "trims/items/helmet_trim",
+                "trims/items/boots_trim"
+            ],
+            "palette_key": "trims/color_palettes/trim_palette",
+            "permutations": {
+                "white_dye": "trims/color_palettes/white_dye",
+                "light_gray_dye": "trims/color_palettes/light_gray_dye",
+                "gray_dye": "trims/color_palettes/gray_dye",
+                "black_dye": "trims/color_palettes/black_dye",
+                "brown_dye": "trims/color_palettes/brown_dye",
+                "red_dye": "trims/color_palettes/red_dye",
+                "orange_dye": "trims/color_palettes/orange_dye",
+                "yellow_dye": "trims/color_palettes/yellow_dye",
+                "lime_dye": "trims/color_palettes/lime_dye",
+                "green_dye": "trims/color_palettes/green_dye",
+                "cyan_dye": "trims/color_palettes/cyan_dye",
+                "light_blue_dye": "trims/color_palettes/light_blue_dye",
+                "blue_dye": "trims/color_palettes/blue_dye",
+                "purple_dye": "trims/color_palettes/purple_dye",
+                "magenta_dye": "trims/color_palettes/magenta_dye",
+                "pink_dye": "trims/color_palettes/pink_dye"
+            }
+        }
+    ]
+}

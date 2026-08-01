@@ -1,0 +1,14 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "moldomre:turtle_scute"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "moldomre:turtle_scute"
+      }
+    ]
+  }
+}

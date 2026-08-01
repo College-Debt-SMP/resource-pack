@@ -1,0 +1,89 @@
+{
+	"credit": "Made with Blockbench",
+	"texture_size": [42, 42],
+	"textures": {
+		"0": "item/hats/white_top_hat"
+	},
+	"elements": [
+		{
+			"name": "hat",
+			"from": [5, 1, 5],
+			"to": [11, 8, 11],
+			"faces": {
+				"north": {"uv": [2.28571, 2.28571, 4.57143, 4.95238], "texture": "#0"},
+				"east": {"uv": [0, 2.28571, 2.28571, 4.95238], "texture": "#0"},
+				"south": {"uv": [6.85714, 2.28571, 9.14286, 4.95238], "texture": "#0"},
+				"west": {"uv": [4.57143, 2.28571, 6.85714, 4.95238], "texture": "#0"},
+				"up": {"uv": [4.57143, 2.28571, 2.28571, 0], "texture": "#0"},
+				"down": {"uv": [6.85714, 0, 4.57143, 2.28571], "texture": "#0"}
+			}
+		},
+		{
+			"name": "brim",
+			"from": [3, 0, 3],
+			"to": [13, 1, 13],
+			"rotation": {"angle": 0, "axis": "y", "origin": [-1, 0, -1]},
+			"faces": {
+				"north": {"uv": [3.80952, 8.7619, 7.61905, 9.14286], "texture": "#0"},
+				"east": {"uv": [0, 8.7619, 3.80952, 9.14286], "texture": "#0"},
+				"south": {"uv": [11.42857, 8.7619, 15.2381, 9.14286], "texture": "#0"},
+				"west": {"uv": [7.61905, 8.7619, 11.42857, 9.14286], "texture": "#0"},
+				"up": {"uv": [7.61905, 8.7619, 3.80952, 4.95238], "texture": "#0"},
+				"down": {"uv": [11.42857, 4.95238, 7.61905, 8.7619], "texture": "#0"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [0, -168, 0],
+			"translation": [0, 3.75, 0],
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [0, 153, 0],
+			"translation": [0, 3.75, 0],
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"firstperson_righthand": {
+			"rotation": [0, -160, 0],
+			"translation": [0.5, 5.5, 0],
+			"scale": [0.95, 0.95, 0.95]
+		},
+		"firstperson_lefthand": {
+			"rotation": [0, 111, 0],
+			"translation": [0, 5.5, 0],
+			"scale": [0.95, 0.95, 0.95]
+		},
+		"ground": {
+			"translation": [0, 3, 0],
+			"scale": [0.75, 0.75, 0.75]
+		},
+		"gui": {
+			"rotation": [23, 135, 0],
+			"translation": [0, 4.5, 0]
+		},
+		"head": {
+			"translation": [0, 21.75, 0],
+			"scale": [2, 2, 2]
+		},
+		"fixed": {
+			"translation": [0, 4.25, 0]
+		}
+	},
+	"groups": [
+		{
+			"name": "hat",
+			"origin": [0, 12, 0],
+			"rotation": [-180, 0, 0],
+			"color": 0,
+			"children": [0]
+		},
+		{
+			"name": "brim",
+			"origin": [8, 0, 8],
+			"rotation": [-180, 0, 0],
+			"color": 0,
+			"children": [1]
+		}
+	]
+}

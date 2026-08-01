@@ -1,0 +1,36 @@
+{
+  "model": {
+    "type": "minecraft:condition",
+    "property": "minecraft:has_component",
+    "component": "minecraft:custom_name",
+    "on_true": {
+      "type": "minecraft:select",
+      "property": "minecraft:component",
+      "component": "minecraft:custom_name",
+      "cases": [
+        {
+          "when": "Elven Cookie Dish",
+          "model": {
+            "type": "minecraft:model",
+            "model": "moldomre:item/foods/elven_cookie_dish"
+          }
+        },
+        {
+          "when": "Galleta élfica Plato",
+          "model": {
+            "type": "minecraft:model",
+            "model": "moldomre:item/foods/elven_cookie_dish"
+          }
+        }
+      ],
+      "fallback": {
+        "type": "minecraft:model",
+        "model": "moldomre:item/food_elven_cookie"
+      }
+    },
+    "on_false": {
+      "type": "minecraft:model",
+      "model": "moldomre:item/food_elven_cookie"
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "model": {
+    "type": "minecraft:condition",
+    "property": "minecraft:has_component",
+    "component": "minecraft:custom_name",
+    "on_true": {
+      "type": "minecraft:select",
+      "property": "minecraft:component",
+      "component": "minecraft:custom_name",
+      "cases": [
+        {
+          "when": "Elven Surprise Dish",
+          "model": {
+            "type": "minecraft:model",
+            "model": "item/foods/elven_surprise_dish"
+          }
+        },
+        {
+          "when": "Sorpresa élfica Plato",
+          "model": {
+            "type": "minecraft:model",
+            "model": "item/foods/elven_surprise_dish"
+          }
+        }
+      ],
+      "fallback": {
+        "type": "minecraft:model",
+        "model": "minecraft:item/food_elven_surprise"
+      }
+    },
+    "on_false": {
+      "type": "minecraft:model",
+      "model": "minecraft:item/food_elven_surprise"
+    }
+  }
+}

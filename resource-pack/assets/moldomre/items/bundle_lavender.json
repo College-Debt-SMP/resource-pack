@@ -1,0 +1,39 @@
+{
+  "model": {
+    "type": "minecraft:select",
+    "cases": [
+      {
+        "model": {
+          "type": "minecraft:condition",
+          "on_false": {
+            "type": "minecraft:model",
+            "model": "moldomre:item/bundle_lavender"
+          },
+          "on_true": {
+            "type": "minecraft:composite",
+            "models": [
+              {
+                "type": "minecraft:model",
+                "model": "moldomre:item/bundle_open_back_lavender"
+              },
+              {
+                "type": "minecraft:bundle/selected_item"
+              },
+              {
+                "type": "minecraft:model",
+                "model": "moldomre:item/bundle_open_front_lavender"
+              }
+            ]
+          },
+          "property": "minecraft:bundle/has_selected_item"
+        },
+        "when": "gui"
+      }
+    ],
+    "fallback": {
+      "type": "minecraft:model",
+      "model": "moldomre:item/bundle_lavender"
+    },
+    "property": "minecraft:display_context"
+  }
+}

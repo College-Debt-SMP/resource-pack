@@ -1,0 +1,313 @@
+{
+  "empty.nothing": {
+    "sounds": [
+    ]
+  },
+  "yoshi.mount": {
+    "sounds": [
+      {
+	"name": "songs/yoshi",
+	"stream": true,
+	"volume": 0.4
+      }
+    ],
+    "subtitle": "subtitles.item.armor.equip_yoshi_hat"
+  },
+  "toad.baba": {
+    "sounds": [
+      {
+	"name": "songs/toad",
+	"stream": true,
+	"volume": 0.4
+      }
+    ],
+    "subtitle": "subtitles.item.armor.equip_toad_hat"
+  },
+  "zelda.rupee": {
+    "sounds": [
+      {
+	"name": "songs/zelda",
+	"stream": true,
+	"volume": 0.4
+      }
+    ],
+    "subtitle": "subtitles.item.armor.equip_zelda_hat"
+  },
+  "music_disc.dog": {
+    "sounds": [
+      {
+        "name": "music_discs/dog",
+        "stream": true,
+        "volume": 1.0
+      }
+    ]
+  },
+  "music_disc.to_the_beginning": {
+    "sounds": [
+      {
+        "name": "music_discs/to_the_beginning",
+        "stream": true,
+        "volume": 1.0
+      }
+    ]
+  },
+  "music_disc.wanderstop": {
+    "sounds": [
+      {
+        "name": "music_discs/wanderstop",
+        "stream": true,
+        "volume": 1.0
+      }
+    ]
+  },
+  "ocarina.song_of_time": {
+    "sounds": [
+      {
+        "name": "songs/song_of_time",
+        "stream": true,
+        "volume": 1.0
+      }
+    ],
+    "subtitle": "subtitles.item.flute.play"
+  },
+  "ocarina.song_of_storms": {
+    "sounds": [
+      {
+        "name": "songs/song_of_storms",
+        "stream": true,
+        "volume": 1.0
+      }
+    ],
+    "subtitle": "subtitles.item.flute.play"
+  },
+  "ocarina.sun_song": {
+    "sounds": [
+      {
+        "name": "songs/sun_song",
+        "stream": true,
+        "volume": 1.0
+      }
+    ],
+    "subtitle": "subtitles.item.flute.play"
+  },
+  "horn.great_sky_falling": {
+    "sounds": [
+      {
+        "name": "songs/horn_gsf",
+        "stream": true,
+        "volume": 1.0
+      }
+    ],
+    "subtitle": "subtitles.item.goat_horn.play"
+  },
+  "horn.old_hymn_resting": {
+    "sounds": [
+      {
+        "name": "songs/horn_ohr",
+        "stream": true,
+        "volume": 1.0
+      }
+    ],
+    "subtitle": "subtitles.item.goat_horn.play"
+  },
+  "horn.pure_water_desire": {
+    "sounds": [
+      {
+        "name": "songs/horn_pwd",
+        "stream": true,
+        "volume": 1.0
+      }
+    ],
+    "subtitle": "subtitles.item.goat_horn.play"
+  },
+  "horn.humble_fire_memory": {
+    "sounds": [
+      {
+        "name": "songs/horn_hfm",
+        "stream": true,
+        "volume": 1.0
+      }
+    ],
+    "subtitle": "subtitles.item.goat_horn.play"
+  },
+  "horn.dry_urge_anger": {
+    "sounds": [
+      {
+        "name": "songs/horn_dua",
+        "stream": true,
+        "volume": 1.0
+      }
+    ],
+    "subtitle": "subtitles.item.goat_horn.play"
+  },
+  "horn.clear_temper_journey": {
+    "sounds": [
+      {
+        "name": "songs/horn_ctj",
+        "stream": true,
+        "volume": 1.0
+      }
+    ],
+    "subtitle": "subtitles.item.goat_horn.play"
+  },
+  "horn.fresh_nest_thought": {
+    "sounds": [
+      {
+        "name": "songs/horn_fnt",
+        "stream": true,
+        "volume": 1.0
+      }
+    ],
+    "subtitle": "subtitles.item.goat_horn.play"
+  },
+  "horn.secret_lake_tear": {
+    "sounds": [
+      {
+        "name": "songs/horn_slt",
+        "stream": true,
+        "volume": 1.0
+      }
+    ],
+    "subtitle": "subtitles.item.goat_horn.play"
+  },
+  "horn.fearless_river_gift": {
+    "sounds": [
+      {
+        "name": "songs/horn_frg",
+        "stream": true,
+        "volume": 1.0
+      }
+    ],
+    "subtitle": "subtitles.item.goat_horn.play"
+  },
+  "horn.sweet_moon_love": {
+    "sounds": [
+      {
+        "name": "songs/horn_sml",
+        "stream": true,
+        "volume": 1.0
+      }
+    ],
+    "subtitle": "subtitles.item.goat_horn.play"
+  },
+  "item.armor.equip_amethyst": {
+    "sounds": [
+      "block/amethyst/step1",
+      "block/amethyst/step2",
+      "block/amethyst/step3",
+      "block/amethyst/step4",
+      "block/amethyst/step5",
+      "block/amethyst/step6",
+      "block/amethyst/step7",
+      "block/amethyst/step8",
+      "block/amethyst/step9",
+      "block/amethyst/step10",
+      "block/amethyst/step11",
+      "block/amethyst/step12",
+      "block/amethyst/step13",
+      "block/amethyst/step14"
+    ],
+    "subtitle": "subtitles.item.armor.equip_amethyst"
+  },
+  "item.armor.equip_emerald": {
+    "sounds": [
+      "item/armor/equip_diamond1",
+      "item/armor/equip_diamond2",
+      "item/armor/equip_diamond3",
+      "item/armor/equip_diamond4",
+      "item/armor/equip_diamond5",
+      "item/armor/equip_diamond6"
+    ],
+    "subtitle": "subtitles.item.armor.equip_emerald"
+  },
+  "item.armor.equip_evocation_robes": {
+    "sounds": [
+      "item/armor/equip_leather1",
+      "item/armor/equip_leather2",
+      "item/armor/equip_leather3",
+      "item/armor/equip_leather4",
+      "item/armor/equip_leather5",
+      "item/armor/equip_leather6"
+    ],
+    "subtitle": "subtitles.item.armor.equip_evocation_robes"
+  },
+  "item.armor.equip_lapis": {
+    "sounds": [
+      "block/enchantment_table/enchant1",
+      "block/enchantment_table/enchant2",
+      "block/enchantment_table/enchant3"
+    ],
+    "subtitle": "subtitles.item.armor.equip_lapis"
+  },
+  "item.armor.equip_nether_star": {
+    "sounds": [
+      "item/armor/equip_diamond1",
+      "item/armor/equip_diamond2",
+      "item/armor/equip_diamond3",
+      "item/armor/equip_diamond4",
+      "item/armor/equip_diamond5",
+      "item/armor/equip_diamond6"
+    ],
+    "subtitle": "subtitles.item.armor.equip_nether_star"
+  },
+  "item.armor.equip_quartz": {
+    "sounds": [
+      "item/armor/equip_copper1",
+      "item/armor/equip_copper2",
+      "item/armor/equip_copper3",
+      "item/armor/equip_copper4",
+      "item/armor/equip_copper5",
+      "item/armor/equip_copper6"
+    ],
+    "subtitle": "subtitles.item.armor.equip_quartz"
+  },
+  "item.armor.equip_redstone": {
+    "sounds": [
+      "random/click"
+    ],
+    "subtitle": "subtitles.item.armor.equip_redstone"
+  },
+  "item.armor.equip_resin": {
+    "sounds": [
+      "block/resin_bricks/resin_brick_step1",
+      "block/resin_bricks/resin_brick_step2",
+      "block/resin_bricks/resin_brick_step3",
+      "block/resin_bricks/resin_brick_step4",
+      "block/resin_bricks/resin_brick_step5"
+    ],
+    "subtitle": "subtitles.item.armor.equip_resin"
+  },
+  "item.hat.equip_armorer_mask": {
+    "sounds": [
+      "item/armor/equip_chain1",
+      "item/armor/equip_chain2",
+      "item/armor/equip_chain3",
+      "item/armor/equip_chain4",
+      "item/armor/equip_chain5",
+      "item/armor/equip_chain6"
+    ],
+    "subtitle": "subtitles.item.hat.equip_armorer_mask"
+  },
+  "item.hat.equip_cartographer_monocle": {
+    "sounds": [
+      "item/armor/equip_chain1",
+      "item/armor/equip_chain2",
+      "item/armor/equip_chain3",
+      "item/armor/equip_chain4",
+      "item/armor/equip_chain5",
+      "item/armor/equip_chain6"
+    ],
+    "subtitle": "subtitles.item.hat.equip_cartographer_monocle"
+  },
+  "item.hat.equip_farmer_hat": {
+    "sounds": [
+      "item/armor/equip_leather1",
+      "item/armor/equip_leather2",
+      "item/armor/equip_leather3",
+      "item/armor/equip_leather4",
+      "item/armor/equip_leather5",
+      "item/armor/equip_leather6"
+    ],
+    "subtitle": "subtitles.item.hat.equip_farmer_hat"
+  }
+}

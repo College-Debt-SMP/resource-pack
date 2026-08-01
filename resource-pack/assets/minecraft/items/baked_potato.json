@@ -1,0 +1,36 @@
+{
+  "model": {
+    "type": "minecraft:condition",
+    "property": "minecraft:has_component",
+    "component": "minecraft:custom_name",
+    "on_true": {
+      "type": "minecraft:select",
+      "property": "minecraft:component",
+      "component": "minecraft:custom_name",
+      "cases": [
+        {
+          "when": "Baked Potato Dish",
+          "model": {
+            "type": "minecraft:model",
+            "model": "item/foods/baked_potato_dish"
+          }
+        },
+        {
+          "when": "Papa horneada Plato",
+          "model": {
+            "type": "minecraft:model",
+            "model": "item/foods/baked_potato_dish"
+          }
+        }
+      ],
+      "fallback": {
+        "type": "minecraft:model",
+        "model": "minecraft:item/baked_potato"
+      }
+    },
+    "on_false": {
+      "type": "minecraft:model",
+      "model": "minecraft:item/baked_potato"
+    }
+  }
+}

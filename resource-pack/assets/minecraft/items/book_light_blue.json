@@ -1,0 +1,81 @@
+{
+  "model": {
+    "type": "minecraft:condition",
+    "property": "minecraft:has_component",
+    "component": "minecraft:written_book_content",
+    "on_true": {
+      "type": "minecraft:select",
+      "property": "minecraft:display_context",
+      "cases": [
+        {
+          "when": [
+            "firstperson_righthand",
+            "firstperson_lefthand",
+            "thirdperson_righthand",
+            "thirdperson_lefthand",
+            "gui",
+            "ground",
+            "on_shelf"
+          ],
+          "model": {
+            "type": "minecraft:model",
+            "model": "item/written_book_light_blue"
+          }
+        }
+      ],
+      "fallback": {
+        "type": "minecraft:select",
+        "property": "minecraft:display_context",
+        "cases": [
+          {
+            "when": [
+              "head",
+              "fixed"
+            ],
+            "model": {
+              "type": "minecraft:model",
+              "model": "item/books/book_light_blue"
+            }
+          }
+        ]
+      }
+    },
+    "on_false": {
+      "type": "minecraft:select",
+      "property": "minecraft:display_context",
+      "cases": [
+        {
+          "when": [
+            "firstperson_righthand",
+            "firstperson_lefthand",
+            "thirdperson_righthand",
+            "thirdperson_lefthand",
+            "gui",
+            "ground",
+            "on_shelf"
+          ],
+          "model": {
+            "type": "minecraft:model",
+            "model": "item/writable_book_light_blue"
+          }
+        }
+      ],
+      "fallback": {
+        "type": "minecraft:select",
+        "property": "minecraft:display_context",
+        "cases": [
+          {
+            "when": [
+              "head",
+              "fixed"
+            ],
+            "model": {
+              "type": "minecraft:model",
+              "model": "item/books/book_light_blue"
+            }
+          }
+        ]
+      }
+    }
+  }
+}

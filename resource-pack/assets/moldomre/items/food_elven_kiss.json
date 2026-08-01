@@ -1,0 +1,36 @@
+{
+  "model": {
+    "type": "minecraft:condition",
+    "property": "minecraft:has_component",
+    "component": "minecraft:custom_name",
+    "on_true": {
+      "type": "minecraft:select",
+      "property": "minecraft:component",
+      "component": "minecraft:custom_name",
+      "cases": [
+        {
+          "when": "Elven Kiss Dish",
+          "model": {
+            "type": "minecraft:model",
+            "model": "moldomre:item/foods/elven_kiss_dish"
+          }
+        },
+        {
+          "when": "Beso élfico Plato",
+          "model": {
+            "type": "minecraft:model",
+            "model": "moldomre:item/foods/elven_kiss_dish"
+          }
+        }
+      ],
+      "fallback": {
+        "type": "minecraft:model",
+        "model": "moldomre:item/food_elven_kiss"
+      }
+    },
+    "on_false": {
+      "type": "minecraft:model",
+      "model": "moldomre:item/food_elven_kiss"
+    }
+  }
+}

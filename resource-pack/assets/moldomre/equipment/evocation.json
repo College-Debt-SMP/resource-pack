@@ -1,0 +1,14 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "moldomre:evocation"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "moldomre:evocation"
+      }
+    ]
+  }
+}

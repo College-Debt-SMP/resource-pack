@@ -1,0 +1,14 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "moldomre:nether_star"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "moldomre:nether_star"
+      }
+    ]
+  }
+}

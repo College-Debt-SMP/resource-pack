@@ -1,0 +1,36 @@
+{
+  "model": {
+    "type": "minecraft:condition",
+    "property": "minecraft:has_component",
+    "component": "minecraft:custom_name",
+    "on_true": {
+      "type": "minecraft:select",
+      "property": "minecraft:component",
+      "component": "minecraft:custom_name",
+      "cases": [
+        {
+          "when": "Chocolate Iced Donut Dish",
+          "model": {
+            "type": "minecraft:model",
+            "model": "moldomre:item/foods/donut_chocolate_iced_dish"
+          }
+        },
+        {
+          "when": "Dona con chocolate Plato",
+          "model": {
+            "type": "minecraft:model",
+            "model": "moldomre:item/foods/donut_chocolate_iced_dish"
+          }
+        }
+      ],
+      "fallback": {
+        "type": "minecraft:model",
+        "model": "moldomre:item/food_donut_chocolate_iced"
+      }
+    },
+    "on_false": {
+      "type": "minecraft:model",
+      "model": "moldomre:item/food_donut_chocolate_iced"
+    }
+  }
+}

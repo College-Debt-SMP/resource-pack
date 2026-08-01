@@ -1,0 +1,14 @@
+{
+  "model": {
+    "type": "minecraft:condition",
+    "on_false": {
+      "type": "minecraft:model",
+      "model": "moldomre:item/elytra_copper"
+    },
+    "on_true": {
+      "type": "minecraft:model",
+      "model": "moldomre:item/elytra_copper_broken"
+    },
+    "property": "minecraft:broken"
+  }
+}

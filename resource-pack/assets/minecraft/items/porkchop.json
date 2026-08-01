@@ -1,0 +1,36 @@
+{
+  "model": {
+    "type": "minecraft:condition",
+    "property": "minecraft:has_component",
+    "component": "minecraft:custom_name",
+    "on_true": {
+      "type": "minecraft:select",
+      "property": "minecraft:component",
+      "component": "minecraft:custom_name",
+      "cases": [
+        {
+          "when": "Raw Porkchop Dish",
+          "model": {
+            "type": "minecraft:model",
+            "model": "item/foods/porkchop_dish"
+          }
+        },
+        {
+          "when": "Chuleta cruda Plato",
+          "model": {
+            "type": "minecraft:model",
+            "model": "item/foods/porkchop_dish"
+          }
+        }
+      ],
+      "fallback": {
+        "type": "minecraft:model",
+        "model": "minecraft:item/porkchop"
+      }
+    },
+    "on_false": {
+      "type": "minecraft:model",
+      "model": "minecraft:item/porkchop"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "model": {
+    "type": "minecraft:condition",
+    "property": "minecraft:has_component",
+    "component": "minecraft:lock",
+    "ignore_default": true,
+    "on_true": {
+      "type": "minecraft:special",
+      "model": {
+        "type": "minecraft:chest",
+        "texture": "minecraft:iron"
+      },
+      "base": "item/chest"
+    },
+    "on_false": {
+      "type": "minecraft:special",
+      "model": {
+        "type": "minecraft:chest",
+        "texture": "minecraft:normal"
+      },
+      "base": "item/chest"
+    }
+  }
+}

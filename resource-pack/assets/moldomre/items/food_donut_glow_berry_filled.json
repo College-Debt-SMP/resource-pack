@@ -1,0 +1,36 @@
+{
+  "model": {
+    "type": "minecraft:condition",
+    "property": "minecraft:has_component",
+    "component": "minecraft:custom_name",
+    "on_true": {
+      "type": "minecraft:select",
+      "property": "minecraft:component",
+      "component": "minecraft:custom_name",
+      "cases": [
+        {
+          "when": "Glow Berry Filled Donut Dish",
+          "model": {
+            "type": "minecraft:model",
+            "model": "moldomre:item/foods/donut_glow_berry_filled_dish"
+          }
+        },
+        {
+          "when": "Dona con bayas brillantes Plato",
+          "model": {
+            "type": "minecraft:model",
+            "model": "moldomre:item/foods/donut_glow_berry_filled_dish"
+          }
+        }
+      ],
+      "fallback": {
+        "type": "minecraft:model",
+        "model": "moldomre:item/food_donut_glow_berry_filled"
+      }
+    },
+    "on_false": {
+      "type": "minecraft:model",
+      "model": "moldomre:item/food_donut_glow_berry_filled"
+    }
+  }
+}

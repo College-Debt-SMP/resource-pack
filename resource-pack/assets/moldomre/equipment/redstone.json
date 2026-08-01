@@ -1,0 +1,14 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "moldomre:redstone"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "moldomre:redstone"
+      }
+    ]
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "moldomre:emerald"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "moldomre:emerald"
+      }
+    ]
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "model": {
+    "type": "minecraft:condition",
+    "property": "minecraft:has_component",
+    "component": "minecraft:custom_name",
+    "on_true": {
+      "type": "minecraft:select",
+      "property": "minecraft:component",
+      "component": "minecraft:custom_name",
+      "cases": [
+        {
+          "when": "Cooked Mutton Dish",
+          "model": {
+            "type": "minecraft:model",
+            "model": "item/foods/cooked_mutton_dish"
+          }
+        },
+        {
+          "when": "Cordero asado Plato",
+          "model": {
+            "type": "minecraft:model",
+            "model": "item/foods/cooked_mutton_dish"
+          }
+        }
+      ],
+      "fallback": {
+        "type": "minecraft:model",
+        "model": "minecraft:item/cooked_mutton"
+      }
+    },
+    "on_false": {
+      "type": "minecraft:model",
+      "model": "minecraft:item/cooked_mutton"
+    }
+  }
+}

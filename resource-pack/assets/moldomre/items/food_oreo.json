@@ -1,0 +1,36 @@
+{
+  "model": {
+    "type": "minecraft:condition",
+    "property": "minecraft:has_component",
+    "component": "minecraft:custom_name",
+    "on_true": {
+      "type": "minecraft:select",
+      "property": "minecraft:component",
+      "component": "minecraft:custom_name",
+      "cases": [
+        {
+          "when": "Oreo Dish",
+          "model": {
+            "type": "minecraft:model",
+            "model": "moldomre:item/foods/oreo_dish"
+          }
+        },
+        {
+          "when": "Oreo Plato",
+          "model": {
+            "type": "minecraft:model",
+            "model": "moldomre:item/foods/oreo_dish"
+          }
+        }
+      ],
+      "fallback": {
+        "type": "minecraft:model",
+        "model": "moldomre:item/food_oreo"
+      }
+    },
+    "on_false": {
+      "type": "minecraft:model",
+      "model": "moldomre:item/food_oreo"
+    }
+  }
+}

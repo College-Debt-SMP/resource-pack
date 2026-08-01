@@ -1,0 +1,36 @@
+{
+  "model": {
+    "type": "minecraft:condition",
+    "property": "minecraft:has_component",
+    "component": "minecraft:custom_name",
+    "on_true": {
+      "type": "minecraft:select",
+      "property": "minecraft:component",
+      "component": "minecraft:custom_name",
+      "cases": [
+        {
+          "when": "Milk Bucket Dish",
+          "model": {
+            "type": "minecraft:model",
+            "model": "item/foods/milk_bucket_dish"
+          }
+        },
+        {
+          "when": "Cubeta de leche Plato",
+          "model": {
+            "type": "minecraft:model",
+            "model": "item/foods/milk_bucket_dish"
+          }
+        }
+      ],
+      "fallback": {
+        "type": "minecraft:model",
+        "model": "minecraft:item/milk_bucket"
+      }
+    },
+    "on_false": {
+      "type": "minecraft:model",
+      "model": "minecraft:item/milk_bucket"
+    }
+  }
+}

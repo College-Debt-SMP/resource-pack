@@ -1,0 +1,36 @@
+{
+  "model": {
+    "type": "minecraft:condition",
+    "property": "minecraft:has_component",
+    "component": "minecraft:custom_name",
+    "on_true": {
+      "type": "minecraft:select",
+      "property": "minecraft:component",
+      "component": "minecraft:custom_name",
+      "cases": [
+        {
+          "when": "Sugar Cookie Dish",
+          "model": {
+            "type": "minecraft:model",
+            "model": "item/foods/sugar_cookie_dish"
+          }
+        },
+        {
+          "when": "Galleta de azúcar Plato",
+          "model": {
+            "type": "minecraft:model",
+            "model": "item/foods/sugar_cookie_dish"
+          }
+        }
+      ],
+      "fallback": {
+        "type": "minecraft:model",
+        "model": "minecraft:item/food_sugar_cookie"
+      }
+    },
+    "on_false": {
+      "type": "minecraft:model",
+      "model": "minecraft:item/food_sugar_cookie"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "layers": {
+    "wings": [
+      {
+        "texture": "moldomre:elytra_indigo",
+        "use_player_texture": false
+      }
+    ]
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "model": {
+    "type": "minecraft:condition",
+    "property": "minecraft:has_component",
+    "component": "minecraft:custom_name",
+    "on_true": {
+      "type": "minecraft:select",
+      "property": "minecraft:component",
+      "component": "minecraft:custom_name",
+      "cases": [
+        {
+          "when": "Raw Mutton Dish",
+          "model": {
+            "type": "minecraft:model",
+            "model": "item/foods/mutton_dish"
+          }
+        },
+        {
+          "when": "Cordero crudo Plato",
+          "model": {
+            "type": "minecraft:model",
+            "model": "item/foods/mutton_dish"
+          }
+        }
+      ],
+      "fallback": {
+        "type": "minecraft:model",
+        "model": "minecraft:item/mutton"
+      }
+    },
+    "on_false": {
+      "type": "minecraft:model",
+      "model": "minecraft:item/mutton"
+    }
+  }
+}

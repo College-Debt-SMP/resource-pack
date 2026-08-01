@@ -1,0 +1,36 @@
+{
+  "model": {
+    "type": "minecraft:condition",
+    "property": "minecraft:has_component",
+    "component": "minecraft:custom_name",
+    "on_true": {
+      "type": "minecraft:select",
+      "property": "minecraft:component",
+      "component": "minecraft:custom_name",
+      "cases": [
+        {
+          "when": "Banana Dish",
+          "model": {
+            "type": "minecraft:model",
+            "model": "moldomre:item/foods/banana_dish"
+          }
+        },
+        {
+          "when": "Plátano Plato",
+          "model": {
+            "type": "minecraft:model",
+            "model": "moldomre:item/foods/banana_dish"
+          }
+        }
+      ],
+      "fallback": {
+        "type": "minecraft:model",
+        "model": "moldomre:item/food_banana"
+      }
+    },
+    "on_false": {
+      "type": "minecraft:model",
+      "model": "moldomre:item/food_banana"
+    }
+  }
+}

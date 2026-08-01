@@ -1,0 +1,36 @@
+{
+  "model": {
+    "type": "minecraft:condition",
+    "property": "minecraft:has_component",
+    "component": "minecraft:custom_name",
+    "on_true": {
+      "type": "minecraft:select",
+      "property": "minecraft:component",
+      "component": "minecraft:custom_name",
+      "cases": [
+        {
+          "when": "Smoked Chicken Dish",
+          "model": {
+            "type": "minecraft:model",
+            "model": "moldomre:item/foods/smoked_chicken_dish"
+          }
+        },
+        {
+          "when": "Pollo ahumado Plato",
+          "model": {
+            "type": "minecraft:model",
+            "model": "moldomre:item/foods/smoked_chicken_dish"
+          }
+        }
+      ],
+      "fallback": {
+        "type": "minecraft:model",
+        "model": "moldomre:item/food_smoked_chicken"
+      }
+    },
+    "on_false": {
+      "type": "minecraft:model",
+      "model": "moldomre:item/food_smoked_chicken"
+    }
+  }
+}
