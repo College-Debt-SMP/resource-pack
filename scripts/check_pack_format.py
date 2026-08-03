@@ -12,29 +12,40 @@ def fetch_latest_formats():
     with urllib.request.urlopen(req) as response:
         data = json.loads(response.read().decode("utf-8"))
         
-    # Some recent/experimental snapshots might be missing pack_version,
-    # so we iterate until we find the most recent valid one.
-    pack_version = None
+    # Misode's mcmeta schema provides `resource_pack_version` and `data_pack_version`
+    # on newer entries, and legacy `pack_version` (dict or int) on older entries.
+    resource_format = None
+    data_format = None
+    
     for entry in data:
-        if entry.get("pack_version") is not None:
-            pack_version = entry.get("pack_version")
+        if resource_format is None and "resource_pack_version" in entry:
+            resource_format = entry["resource_pack_version"]
+        if data_format is None and "data_pack_version" in entry:
+            data_format = entry["data_pack_version"]
+            
+        pv = entry.get("pack_version")
+        if pv is not None:
+            if isinstance(pv, dict):
+                if resource_format is None:
+                    resource_format = pv.get("resource")
+                if data_format is None:
+                    data_format = pv.get("data")
+            elif isinstance(pv, int):
+                if resource_format is None:
+                    resource_format = pv
+                if data_format is None:
+                    data_format = pv
+
+        if resource_format is not None and data_format is not None:
             break
-    
-    if pack_version is None:
-        raise ValueError("Could not find any pack_version in the recent versions list.")
-    
-    if isinstance(pack_version, dict):
-        return {
-            "resource": pack_version.get("resource", 0),
-            "data": pack_version.get("data", 0)
-        }
-    elif isinstance(pack_version, int):
-        return {
-            "resource": pack_version,
-            "data": pack_version
-        }
-    else:
-        raise ValueError(f"Unexpected pack_version format: {pack_version}")
+            
+    if resource_format is None or data_format is None:
+        raise ValueError(f"Could not extract pack versions from API response. Found resource={resource_format}, data={data_format}")
+
+    return {
+        "resource": resource_format,
+        "data": data_format
+    }
 
 def update_mcmeta(file_path, new_max_format):
     """Updates the pack.mcmeta file if the new format is greater than the current max."""
