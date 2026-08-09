@@ -1,12 +1,12 @@
 {
   "pack": {
-    "pack_format": 107,
+    "pack_format": 115,
     "description": "College Debt SMP custom resources",
     "min_format": 88,
-    "max_format": 107,
+    "max_format": 115,
     "supported_formats": {
       "min_inclusive": 88,
-      "max_inclusive": 107
+      "max_inclusive": 115
     }
   }
 }
