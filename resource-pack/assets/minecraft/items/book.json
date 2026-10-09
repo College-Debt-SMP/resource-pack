@@ -30,7 +30,7 @@
           ],
           "model": {
             "type": "minecraft:model",
-            "model": "item/books/book_classic"
+            "model": "item/books/book_sepia"
           }
         }
       ]

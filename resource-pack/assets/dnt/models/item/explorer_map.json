@@ -1,0 +1,7 @@
+{
+    "parent": "minecraft:item/generated",
+    "textures": {
+      "layer0": "dnt:item/explorer_map",
+      "layer1": "dnt:item/explorer_map_decal"
+    }
+  }

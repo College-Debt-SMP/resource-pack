@@ -19,13 +19,6 @@
       {
         "model": {
           "type": "minecraft:model",
-          "model": "minecraft:item/iron_leggings_netherite_trim"
-        },
-        "when": "minecraft:netherite"
-      },
-      {
-        "model": {
-          "type": "minecraft:model",
           "model": "minecraft:item/iron_leggings_redstone_trim"
         },
         "when": "minecraft:redstone"

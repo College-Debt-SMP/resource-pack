@@ -155,7 +155,7 @@
   "enchantment.dnt.power": "威力",
   "enchantment.dnt.power.desc": "增加弩箭的伤害。",
   "enchantment.dnt.spiteful": "怨恨",
-  "enchantment.dnt.spiteful.desc": "提高玩家在低生命值（低于2.5颗心）时造成的近战伤害（每级+2近战伤害）；\n当被生物攻击时有30%（每级+15%）几率获得1-3s的力量I效果。",
+  "enchantment.dnt.spiteful.desc": "提高玩家在低生命值（低于2.5颗心）时造成的近战伤害（每级+2近战伤害）；\n当被生物攻击时有30%%（每级+15%%）几率获得1-3s的力量I效果。",
   "enchantment.dnt.swift_soar": "迅猛翱翔",
   "enchantment.dnt.swift_soar.desc": "当骑乘者疾跑时提高快乐恶魂的飞行速度。",
   "enchantment.dnt.traveler": "旅行者",

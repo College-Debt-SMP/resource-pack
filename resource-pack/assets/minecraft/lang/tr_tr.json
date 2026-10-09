@@ -1,0 +1,16 @@
+{
+    "item.minecraft.lingering_potion.effect.dnt_blindness": "Kalıcı Körlük İksiri",
+    "item.minecraft.lingering_potion.effect.dnt_mining_fatigue": "Kalıcı Madenci Yorgunluğu İksiri",
+    "item.minecraft.lingering_potion.effect.dnt_levitation": "Kalıcı Yükselme İksiri",
+    "item.minecraft.lingering_potion.effect.dnt_nausea": "Kalıcı Bulantı İksiri",
+    "item.minecraft.lingering_potion.effect.dnt_wither": "Kalıcı Solma İksiri",
+    "item.minecraft.potion.effect.dnt_levitation": "Yükselme İksiri",
+    "item.minecraft.potion.effect.dnt_wither": "Solma İksiri",
+    "item.minecraft.splash_potion.effect.dnt_dolphins_grace": "Patlayıcı Yunusun Lütfu İksiri",
+    "item.minecraft.splash_potion.effect.dnt_levitation": "Patlayıcı Yükselme İksiri",
+    "item.minecraft.splash_potion.effect.dnt_water_breathing": "Patlayıcı Su Altında Nefes Alma İksiri",
+    "item.minecraft.splash_potion.effect.dnt_wither": "Patlayıcı Solma İksiri",
+    "item.minecraft.tipped_arrow.effect.dnt_levitation": "Yükselme Oku",
+    "item.minecraft.tipped_arrow.effect.dnt_nausea": "Bulantı Oku",
+    "item.minecraft.tipped_arrow.effect.dnt_wither": "Solma Oku"
+}

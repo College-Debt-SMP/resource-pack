@@ -2,9 +2,9 @@
 
 This repository contains the resource pack that will be automatically download upon each server join. They include the resources for the following datapacks and their respective version:
 - College Debt SMP Custom Paintings – Continue reading for submission instructions
-- [Dungeons and Taverns (DnT)](https://modrinth.com/datapack/dungeons-and-taverns) – 5.3.0
-- [Portfolio](https://modrinth.com/datapack/portfolio) – 1.5.5
-- [Vanilla+](https://modrinth.com/datapack/vanilla-plus-data-pack) – 24.0
+- [Dungeons and Taverns (DnT)](https://modrinth.com/datapack/dungeons-and-taverns) – 6.0.2
+- [Portfolio](https://modrinth.com/datapack/portfolio) – 1.6.0
+- [Vanilla+](https://modrinth.com/datapack/vanilla-plus-data-pack) – 26.0
 
 ## Submitting custom painting(s)
 

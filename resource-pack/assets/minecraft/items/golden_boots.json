@@ -19,9 +19,9 @@
       {
         "model": {
           "type": "minecraft:model",
-          "model": "minecraft:item/golden_boots_netherite_trim"
+          "model": "minecraft:item/golden_boots_golden_trim"
         },
-        "when": "minecraft:netherite"
+        "when": "minecraft:golden"
       },
       {
         "model": {

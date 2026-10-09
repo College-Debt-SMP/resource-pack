@@ -261,12 +261,6 @@
     ],
     "subtitle": "subtitles.item.armor.equip_quartz"
   },
-  "item.armor.equip_redstone": {
-    "sounds": [
-      "random/click"
-    ],
-    "subtitle": "subtitles.item.armor.equip_redstone"
-  },
   "item.armor.equip_resin": {
     "sounds": [
       "block/resin_bricks/resin_brick_step1",
@@ -276,6 +270,17 @@
       "block/resin_bricks/resin_brick_step5"
     ],
     "subtitle": "subtitles.item.armor.equip_resin"
+  },
+  "item.armor.equip_ruby": {
+    "sounds": [
+      "item/armor/equip_diamond1",
+      "item/armor/equip_diamond2",
+      "item/armor/equip_diamond3",
+      "item/armor/equip_diamond4",
+      "item/armor/equip_diamond5",
+      "item/armor/equip_diamond6"
+    ],
+    "subtitle": "subtitles.item.armor.equip_ruby"
   },
   "item.hat.equip_armorer_mask": {
     "sounds": [

@@ -1,0 +1,14 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "moldomre:ruby"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "moldomre:ruby"
+      }
+    ]
+  }
+}

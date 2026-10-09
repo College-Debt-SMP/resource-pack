@@ -1,0 +1,37 @@
+{
+  "sources": [
+    {
+      "type": "minecraft:directory",
+      "prefix": "item/",
+      "source": "item"
+    },
+    {
+      "type": "minecraft:paletted_permutations",
+      "palette_key": "minecraft:trim_base",
+      "permutations": {
+        "moldomreplus:black_dye": "moldomre:trim/black_dye",
+        "moldomreplus:blue_dye": "moldomre:trim/blue_dye",
+        "moldomreplus:brown_dye": "moldomre:trim/brown_dye",
+        "moldomreplus:cyan_dye": "moldomre:trim/cyan_dye",
+        "moldomreplus:gray_dye": "moldomre:trim/gray_dye",
+        "moldomreplus:green_dye": "moldomre:trim/green_dye",
+        "moldomreplus:light_blue_dye": "moldomre:trim/light_blue_dye",
+        "moldomreplus:light_gray_dye": "moldomre:trim/light_gray_dye",
+        "moldomreplus:lime_dye": "moldomre:trim/lime_dye",
+        "moldomreplus:magenta_dye": "moldomre:trim/magenta_dye",
+        "moldomreplus:orange_dye": "moldomre:trim/orange_dye",
+        "moldomreplus:pink_dye": "moldomre:trim/pink_dye",
+        "moldomreplus:purple_dye": "moldomre:trim/purple_dye",
+        "moldomreplus:red_dye": "moldomre:trim/red_dye",
+        "moldomreplus:white_dye": "moldomre:trim/white_dye",
+        "moldomreplus:yellow_dye": "moldomre:trim/yellow_dye"
+      },
+      "textures": [
+        "minecraft:trims/items/helmet_trim",
+        "minecraft:trims/items/chestplate_trim",
+        "minecraft:trims/items/leggings_trim",
+        "minecraft:trims/items/boots_trim"
+      ]
+    }
+  ]
+}
